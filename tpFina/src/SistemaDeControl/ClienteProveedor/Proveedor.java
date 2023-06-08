@@ -1,4 +1,5 @@
 package SistemaDeControl.ClienteProveedor;
 
-public class Proveedor {
+public enum Proveedor {
+
 }
