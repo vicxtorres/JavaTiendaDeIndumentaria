@@ -1,4 +1,6 @@
 package SistemaDeControl.Paquete;
 
-public class Paquete {
+public class Paquete
+{
+
 }
