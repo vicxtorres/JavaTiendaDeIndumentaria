@@ -1,7 +1,0 @@
-package SistemaDeControl.Paquete;
-
-public enum Color
-{
-    BLANCO, NEGRO, AZUL, ROJO, ROSA, CELESTE, MARRON, COMBINACIONMULTICOLOR, GRIS, VERDE, VIOLETA, AMARILLO, NARANJA
-
-}
