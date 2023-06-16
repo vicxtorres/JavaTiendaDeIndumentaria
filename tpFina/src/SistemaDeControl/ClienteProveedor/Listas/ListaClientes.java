@@ -63,7 +63,7 @@ public class ListaClientes implements I_metodosListas<Cliente> {
     public String listar() throws ListaVacia {
         if(lista.isEmpty())
         {
-            throw new ListaVacia("No hay clientes ingresados.")
+            throw new ListaVacia("No hay clientes ingresados.");
         }
         StringBuilder sb = new StringBuilder();
         for(Cliente cliente : lista)
