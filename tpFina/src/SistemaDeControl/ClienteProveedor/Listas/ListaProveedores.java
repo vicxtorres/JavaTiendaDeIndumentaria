@@ -1,5 +1,6 @@
 package SistemaDeControl.ClienteProveedor.Listas;
 
+import SistemaDeControl.ClienteProveedor.Proveedor;
 import SistemaDeControl.Excepciones.CuitYaAgregado;
 import SistemaDeControl.Excepciones.ListaVacia;
 import SistemaDeControl.Excepciones.NoExisteElCuil;
@@ -10,29 +11,40 @@ import java.util.ArrayList;
 
 /**
  * es una plantilla para una eventual lista de proveedores o clientes.
- * @param <T> clase proveedor o cliente
- */
-public class ListaProveedoresClientes <T> implements I_metodosListas  {
 
-    private ArrayList <T> lista;
+ */
+public class ListaProveedores implements I_metodosListas<Proveedor> {
+
+    private ArrayList <Proveedor> lista;
+
+
+    /**constructores*/
+
+    public ListaProveedores()
+    {
+        lista = new ArrayList<>();
+    }
+    public ListaProveedores(ArrayList<Proveedor> lista)
+    {this.lista = lista;}
+
 
 
     /**
      * agrega un elemento (cliente o proveedor) a la lista
-     * @param elemento es el cliente o proveedor
+     * @param proveedor es el cliente o proveedor
      * @return si fue agregado correctamente, un boolean que es true.
      */
 
     @Override
-    public boolean agregar(T elemento) {
+    public boolean agregar(Proveedor proveedor) {
         boolean agregado = false;
-        if(lista.contains(elemento))
+        if(lista.contains(proveedor))
         {
             throw new CuitYaAgregado("Cuit ya Agregado previamente. Pruebe con otro cuit.");
         }
         else
         {
-            lista.add(elemento);
+            lista.add(proveedor);
             agregado = true;
         }
         return agregado;
@@ -45,11 +57,11 @@ public class ListaProveedoresClientes <T> implements I_metodosListas  {
      */
 
     @Override
-    public boolean borrar(T elemento) {
+    public boolean borrar(Proveedor proveedor) {
         boolean borrado = false;
-     if(lista.contains(elemento))
+     if(lista.contains(proveedor))
      {
-         lista.remove(elemento);
+         lista.remove(proveedor);
          borrado = true;
      }
      else {
@@ -63,12 +75,12 @@ public class ListaProveedoresClientes <T> implements I_metodosListas  {
     public String listar() throws ListaVacia {
         if(lista.isEmpty())
         {
-            throw new ListaVacia("No hay Cuits ingresados!");
+            throw new ListaVacia("No hay proveedores ingresados!");
         }
         StringBuilder sb = new StringBuilder();
-        for(T element : lista)
+        for(Proveedor proveedor : lista)
         {
-            sb.append(element);
+            sb.append(proveedor);
         }
         return sb.toString();
     }
