@@ -8,17 +8,14 @@ public abstract class Producto
     private Date fechaDeIngreso;
     private double precioCosto;
     private double precioVenta;
-
     private String marca;
     private Color color;
     private String descripcion;
     private String disciplina;
-
     private boolean esOferta;
     private boolean esNovedad;
 
 
-    //* si es abstracto no podemos instanciarlo igual
     public Producto()
     {
         SKU = 0;
@@ -33,6 +30,19 @@ public abstract class Producto
         esNovedad = false;
     }
 
+    /**
+     * Constructor completo de Producto
+     * @param SKU codigo
+     * @param fechaDeIngreso
+     * @param precioCosto
+     * @param precioVenta
+     * @param marca
+     * @param color AZUL, ROJO, ROSA, CELESTE, MARRON, MULTICOLOR, GRIS, VERDE, VIOLETA, AMARILLO, NARANJA
+     * @param descripcion
+     * @param disciplina
+     * @param esOferta
+     * @param esNovedad
+     */
     public Producto(int SKU, Date fechaDeIngreso, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad) {
         this.SKU = SKU;
         this.fechaDeIngreso = fechaDeIngreso;
@@ -131,9 +141,11 @@ public abstract class Producto
     }
 
 
-    ///ABASTRACTO
-
-    public abstract String getMedida(); //ver esto bien, el retorno tiene que ser el mismo en las subclases, entonces devuelvo string
+    /**
+     * Metodo abstracto, implementado en las clases Accesorio, Calzado e Indumentaria
+     * @return String con la medida indicada
+     */
+    public abstract String getMedida();
 
 
 
