@@ -7,6 +7,7 @@ import SistemaDeControl.Excepciones.NoExisteElCuil;
 import SistemaDeControl.Interfaces.I_metodosListas;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class ListaClientes implements I_metodosListas<Cliente> {
 
@@ -72,5 +73,18 @@ public class ListaClientes implements I_metodosListas<Cliente> {
 
         }
         return sb.toString();
+    }
+
+    @Override
+    public Cliente buscar(Cliente element) {
+        if(lista.contains(element))
+        {
+            return element;
+        }
+        else
+        {
+            throw new NoSuchElementException("No se encontró el cliente.");
+        }
+
     }
 }

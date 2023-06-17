@@ -1,5 +1,6 @@
 package SistemaDeControl.ClienteProveedor.Listas;
 
+import SistemaDeControl.ClienteProveedor.Cliente;
 import SistemaDeControl.ClienteProveedor.Proveedor;
 import SistemaDeControl.Excepciones.CuitYaAgregado;
 import SistemaDeControl.Excepciones.ListaVacia;
@@ -7,6 +8,7 @@ import SistemaDeControl.Excepciones.NoExisteElCuil;
 import SistemaDeControl.Interfaces.I_metodosListas;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 
 /**
@@ -85,5 +87,18 @@ public class ListaProveedores implements I_metodosListas<Proveedor> {
         return sb.toString();
     }
 
+
+    @Override
+    public Proveedor buscar(Proveedor element) {
+        if(lista.contains(element))
+        {
+            return element;
+        }
+        else
+        {
+            throw new NoSuchElementException("No se encontró el cliente.");
+        }
+
+    }
 
 }
