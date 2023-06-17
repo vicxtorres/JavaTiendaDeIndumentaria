@@ -12,5 +12,7 @@ public interface I_metodosListas <T>  {
 
     public String listar() throws ListaVacia;
 
+    public T buscar(T element);
+
 }
 
