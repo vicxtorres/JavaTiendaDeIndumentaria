@@ -23,7 +23,6 @@ public class Indumentaria extends Producto
     /**
      * Constructor completo de Indumentaria
      * @param SKU
-     * @param fechaDeIngreso
      * @param precioCosto
      * @param precioVenta
      * @param marca
@@ -36,8 +35,8 @@ public class Indumentaria extends Producto
      * @param tipoIndumentaria PANTALON, REMERA, SHORT, CALZA, CAMPERA, BUZO, MEDIAS, GORRA
      * @param talleMedida XS, X, M, L, XL, XXL, XXXL
      */
-    public Indumentaria(int SKU, Date fechaDeIngreso, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, int stock, TipoIndumentaria tipoIndumentaria, String talleMedida) {
-        super(SKU, fechaDeIngreso, precioCosto, precioVenta, marca, color, descripcion, disciplina, esOferta, esNovedad, stock);
+    public Indumentaria(int SKU, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, int stock, TipoIndumentaria tipoIndumentaria, String talleMedida) {
+        super(SKU, precioCosto, precioVenta, marca, color, descripcion, disciplina, esOferta, esNovedad, stock);
         this.tipoIndumentaria = tipoIndumentaria;
         this.talleMedida = talleMedida;
     }

@@ -64,15 +64,6 @@ public class GrabadoraProductos
         System.out.print("Fecha de ingreso (dd/mm/aaaa): ");
         String fechaIngresoStr = scanner.next();
         // Convertir la fecha ingresada a tipo Date utilizando SimpleDateFormat
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            Date fechaDeIngreso = dateFormat.parse(fechaIngresoStr);
-            producto.setFechaDeIngreso(fechaDeIngreso);
-        } catch (ParseException e) {
-            System.out.println("Formato de fecha inválido. Vuelva a intentarlo.");
-            return;
-        }
-
 
         System.out.print("Precio de costo: ");
         double precioCosto = scanner.nextDouble();

@@ -6,7 +6,6 @@ import java.util.Date;
 public abstract class Producto implements Comparable, Serializable
 {
     private int SKU;
-    private Date fechaDeIngreso;
     private double precioCosto;
     private double precioVenta;
     private String marca;
@@ -21,7 +20,6 @@ public abstract class Producto implements Comparable, Serializable
     public Producto()
     {
         SKU = 0;
-        fechaDeIngreso = null;
         precioCosto = 0;
         precioVenta = 0;
         marca = "";
@@ -35,7 +33,7 @@ public abstract class Producto implements Comparable, Serializable
     /**
      * Constructor completo de Producto
      * @param SKU codigo
-     * @param fechaDeIngreso
+
      * @param precioCosto
      * @param precioVenta
      * @param marca
@@ -46,9 +44,8 @@ public abstract class Producto implements Comparable, Serializable
      * @param esNovedad
      * @param stock indica cuantos productos exactamente iguales a este hay
      */
-    public Producto(int SKU, Date fechaDeIngreso, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, int stock) {
+    public Producto(int SKU, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, int stock) {
         this.SKU = SKU;
-        this.fechaDeIngreso = fechaDeIngreso;
         this.precioCosto = precioCosto;
         this.precioVenta = precioVenta;
         this.marca = marca;
@@ -63,10 +60,6 @@ public abstract class Producto implements Comparable, Serializable
     ///GETTERS
     public int getSKU() {
         return SKU;
-    }
-
-    public Date getFechaDeIngreso() {
-        return fechaDeIngreso;
     }
 
     public double getPrecioCosto() {
@@ -111,10 +104,6 @@ public abstract class Producto implements Comparable, Serializable
         this.SKU = SKU;
     }
 
-    public void setFechaDeIngreso(Date fechaDeIngreso) {
-        this.fechaDeIngreso = fechaDeIngreso;
-    }
-
     public void setPrecioCosto(double precioCosto) {
         this.precioCosto = precioCosto;
     }
@@ -156,7 +145,7 @@ public abstract class Producto implements Comparable, Serializable
     public String toString() {
         return
                 "\nSKU: " + SKU +
-                "\nFecha de Ingreso: " + fechaDeIngreso +
+                "\nFecha de Ingreso: "  +
                 "\nPrecio de costo: " + precioCosto +
                 "\nPrecio de venta: " + precioVenta +
                 "\nMarca: " + marca +

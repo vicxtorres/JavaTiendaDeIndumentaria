@@ -80,7 +80,7 @@ public class SetProductos implements I_metodosListas <Producto>, Serializable //
         }
         StringBuilder sb = new StringBuilder();
         for(Producto p : productos)
-        { sb.append(p);
+        { sb.append("--------------------------"+p+"\n");
         } return sb.toString();
     }
 
