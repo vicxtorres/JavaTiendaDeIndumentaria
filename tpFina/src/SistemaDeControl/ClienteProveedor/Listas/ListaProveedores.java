@@ -7,6 +7,7 @@ import SistemaDeControl.Excepciones.ListaVacia;
 import SistemaDeControl.Excepciones.NoExisteElCuil;
 import SistemaDeControl.Interfaces.I_metodosListas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
@@ -15,7 +16,7 @@ import java.util.NoSuchElementException;
  * es una plantilla para una eventual lista de proveedores o clientes.
 
  */
-public class ListaProveedores implements I_metodosListas<Proveedor> {
+public class ListaProveedores implements I_metodosListas<Proveedor>, Serializable {
 
     private ArrayList <Proveedor> lista;
 

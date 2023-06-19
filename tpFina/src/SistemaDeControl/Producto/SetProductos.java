@@ -147,7 +147,7 @@ public class SetProductos implements I_metodosListas <Producto>, Serializable //
 
     @Override
     public String toString() {
-        return "- Productos -\n" + productos;
+        return "\n- Productos -\n" + productos;
     }
 
 

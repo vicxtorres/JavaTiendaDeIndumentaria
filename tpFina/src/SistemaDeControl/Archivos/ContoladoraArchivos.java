@@ -1,8 +1,12 @@
 package SistemaDeControl.Archivos;
 
+import SistemaDeControl.DocumentosComerciales.Documento;
+import SistemaDeControl.DocumentosComerciales.Factura;
+import SistemaDeControl.DocumentosComerciales.Remito;
 import SistemaDeControl.Producto.Producto;
 import SistemaDeControl.Producto.SetProductos;
 
+import javax.swing.text.Document;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -106,7 +110,6 @@ public class ContoladoraArchivos
 
     /**
      * Graba un TreeSet de Producto
-     * @param treeSet
      * @param nombreArchivo debe terminar en .dat
      */
     public static void grabarSetProductos (SetProductos setProductos, String nombreArchivo)
@@ -299,6 +302,171 @@ public class ContoladoraArchivos
         }
         return hashMap;
     }
+
+
+    /** graba una factura en un archivo
+     *
+     * @param factura la factura cargada
+     * @param nombreArchivo nombre del archivo
+     */
+    public static void grabarFactura (Factura factura, String nombreArchivo)
+    {
+        FileOutputStream fileOutputStream=null;
+        ObjectOutputStream objectOutputStream = null;
+
+        try
+        {
+            fileOutputStream = new FileOutputStream(nombreArchivo);
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(factura);
+        }
+        catch (IOException ex)
+        {
+            ex.getMessage();
+        }
+
+        finally {
+            try
+            {
+                if(fileOutputStream!=null)
+                    fileOutputStream.close();
+
+                if(objectOutputStream!=null)
+                    objectOutputStream.close();
+
+            }catch (IOException ex)
+            {
+                ex.getMessage();
+            }
+        }
+    }
+
+
+    /**
+     * leer una factura desde un archivo
+     */
+    public static Documento leerFactura (String nombreArchivo)
+    {
+        Documento factura = new Factura();
+        FileInputStream fileInputStream=null;
+        ObjectInputStream objectInputStream=null;
+
+        try
+        {
+            fileInputStream = new FileInputStream(nombreArchivo);
+            objectInputStream = new ObjectInputStream(fileInputStream);
+
+            factura = (Documento) objectInputStream.readObject();
+        }
+        catch (EOFException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        catch (ClassNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        catch (IOException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if(fileInputStream!=null)
+                    fileInputStream.close();
+                if(objectInputStream!=null)
+                    objectInputStream.close();
+            }
+            catch (IOException ex)
+            {
+                ex.getMessage();
+            }
+        }
+        return factura;
+    }
+
+
+    /**AHORA LO MISMO CON REMITOS
+     *
+     */
+
+    public static void grabarRemito (Remito remito, String nombreArchivo)
+    {
+        FileOutputStream fileOutputStream=null;
+        ObjectOutputStream objectOutputStream = null;
+
+        try
+        {
+            fileOutputStream = new FileOutputStream(nombreArchivo);
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(remito);
+        }
+        catch (IOException ex)
+        {
+            ex.getMessage();
+        }
+
+        finally {
+            try
+            {
+                if(fileOutputStream!=null)
+                    fileOutputStream.close();
+
+                if(objectOutputStream!=null)
+                    objectOutputStream.close();
+
+            }catch (IOException ex)
+            {
+                ex.getMessage();
+            }
+        }
+    }
+
+
+    public static Documento leerRemito (String nombreArchivo)
+    {
+        Documento remito = new Remito();
+        FileInputStream fileInputStream=null;
+        ObjectInputStream objectInputStream=null;
+
+        try
+        {
+            fileInputStream = new FileInputStream(nombreArchivo);
+            objectInputStream = new ObjectInputStream(fileInputStream);
+
+            remito = (Documento) objectInputStream.readObject();
+        }
+        catch (EOFException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        catch (ClassNotFoundException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        catch (IOException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+        finally
+        {
+            try
+            {
+                if(fileInputStream!=null)
+                    fileInputStream.close();
+                if(objectInputStream!=null)
+                    objectInputStream.close();
+            }
+            catch (IOException ex)
+            {
+                ex.getMessage();
+            }
+        }
+        return remito;
+    }
+
 
 
 }

@@ -3,7 +3,9 @@ package SistemaDeControl.DocumentosComerciales;
 import SistemaDeControl.ClienteProveedor.Proveedor;
 import SistemaDeControl.Producto.SetProductos;
 
-public class Documento {
+import java.io.Serializable;
+
+public class Documento implements Serializable {
 
   private int numero;
   private SetProductos listadoProductos;
@@ -70,9 +72,8 @@ public class Documento {
    */
   @Override
   public String toString() {
-    return "Documento{" +
-            "numero=" + numero +
-            ", listadoProductos=" + listadoProductos +
-            '}';
+    return  "\nDocumento" + "\n" +
+            "\nNumero=" + numero + "\n" +
+            "\n" + listadoProductos ;
   }
 }

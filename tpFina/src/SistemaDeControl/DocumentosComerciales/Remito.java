@@ -24,6 +24,10 @@ private Proveedor proveedor;
                 proveedor = new Proveedor();
         }
 
+        public Remito()
+        {
+                proveedor = new Proveedor();
+        }
 
 
 

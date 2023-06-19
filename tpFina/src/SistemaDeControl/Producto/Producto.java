@@ -154,7 +154,8 @@ public abstract class Producto implements Comparable, Serializable
                 "\nDisciplina: " + disciplina +
                 "\nEs oferta: " + esOferta +
                 "\nEs novedad: " + esNovedad +
-                "\nSTOCK: " + stock;
+                "\nSTOCK: " + stock +
+                "\n------------------------------\n";
     }
 
 

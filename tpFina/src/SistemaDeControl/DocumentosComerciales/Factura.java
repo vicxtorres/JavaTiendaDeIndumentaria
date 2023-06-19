@@ -25,12 +25,18 @@ private double totalFactura;
         this.totalFactura = totalFactura;
     }
 
+
     public Factura(int numero, SetProductos listadoProductos) {
         super(numero, listadoProductos);
         cliente = new Cliente();
         totalFactura = 0;
     }
 
+    public Factura ()
+    {
+        cliente = new Cliente();
+        totalFactura = 0;
+    }
 
     /**
      * getter y setter
@@ -76,9 +82,13 @@ private double totalFactura;
      */
     @Override
     public String toString() {
-        return "Factura{" +
-                "cliente=" + cliente +
-                ", totalFactura=" + totalFactura +
-                "} " + super.toString();
+        return  "\n-------------------------------------"+
+                "\nFactura\n" +
+                 cliente + "\n" +
+                "\n-------------------------------------"+
+                "\nTotal Factura =" + totalFactura +"\n" +
+                "\n-------------------------------------"+
+                super.toString() +
+                "\n-----------------------------------";
     }
 }

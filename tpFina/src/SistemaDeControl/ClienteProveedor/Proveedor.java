@@ -1,6 +1,8 @@
 package SistemaDeControl.ClienteProveedor;
 
-public class Proveedor {
+import java.io.Serializable;
+
+public class Proveedor implements Serializable {
 
 
     private String nombre;
@@ -88,5 +90,15 @@ public  Proveedor()
     }
 
 
-
+/**tostring*/
+    @Override
+    public String toString() {
+        return  "\n-------------------------------------"+
+                "\nProveedor{" +
+                "\nnombre='" + nombre + '\'' +
+                "\ncuit='" + cuit + '\'' +
+                "\ndomicilioFiscal='" + domicilioFiscal + '\'' +
+                "\ncondicionFiscal=" + condicionFiscal +
+                "\n-----------------------------------";
+    }
 }

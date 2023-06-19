@@ -6,10 +6,11 @@ import SistemaDeControl.Excepciones.ListaVacia;
 import SistemaDeControl.Excepciones.NoExisteElCuil;
 import SistemaDeControl.Interfaces.I_metodosListas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class ListaClientes implements I_metodosListas<Cliente> {
+public class ListaClientes implements I_metodosListas<Cliente>, Serializable {
 
     private ArrayList<Cliente> lista;
 
