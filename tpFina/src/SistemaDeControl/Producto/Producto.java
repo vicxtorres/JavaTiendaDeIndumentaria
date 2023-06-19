@@ -1,8 +1,9 @@
 package SistemaDeControl.Producto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public abstract class Producto
+public abstract class Producto implements Comparable, Serializable
 {
     private int SKU;
     private Date fechaDeIngreso;
@@ -14,6 +15,7 @@ public abstract class Producto
     private String disciplina;
     private boolean esOferta;
     private boolean esNovedad;
+    private int stock;
 
 
     public Producto()
@@ -42,8 +44,9 @@ public abstract class Producto
      * @param disciplina
      * @param esOferta
      * @param esNovedad
+     * @param stock indica cuantos productos exactamente iguales a este hay
      */
-    public Producto(int SKU, Date fechaDeIngreso, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad) {
+    public Producto(int SKU, Date fechaDeIngreso, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, int stock) {
         this.SKU = SKU;
         this.fechaDeIngreso = fechaDeIngreso;
         this.precioCosto = precioCosto;
@@ -54,8 +57,8 @@ public abstract class Producto
         this.disciplina = disciplina;
         this.esOferta = esOferta;
         this.esNovedad = esNovedad;
+        this.stock = stock;
     }
-
 
     ///GETTERS
     public int getSKU() {
@@ -88,6 +91,10 @@ public abstract class Producto
 
     public String getDisciplina() {
         return disciplina;
+    }
+
+    public int getStock() {
+        return stock;
     }
 
     public boolean isEsOferta() {
@@ -140,12 +147,58 @@ public abstract class Producto
         this.esNovedad = esNovedad;
     }
 
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+
+    @Override
+    public String toString() {
+        return
+                "\nSKU: " + SKU +
+                "\nFecha de Ingreso: " + fechaDeIngreso +
+                "\nPrecio de costo: " + precioCosto +
+                "\nPrecio de venta: " + precioVenta +
+                "\nMarca: " + marca +
+                "\nColor=" + color +
+                "\nDescripcion: " + descripcion +
+                "\nDisciplina: " + disciplina +
+                "\nEs oferta: " + esOferta +
+                "\nEs novedad: " + esNovedad +
+                "\nSTOCK: " + stock;
+    }
+
+
+
+    /**
+     * Compara los productos mediante su código SKU
+     * @param elementoComparado the object to be compared.
+     * @return 0 = iguales
+     */
+    @Override
+    public int compareTo(Object elementoComparado) //x.compareTo(elementoComparado);
+    {
+        int rta = 0;
+        if (elementoComparado != null) {
+            if (elementoComparado instanceof Producto) {
+                Producto aux = (Producto) elementoComparado;
+              //  Integer SKU = new Integer(getSKU());
+                //Integer otroSKU = new Integer(aux.getSKU());
+
+                rta = Integer.compare(getSKU(), aux.getSKU());
+            }
+        }
+        return rta;
+    }
+
+
 
     /**
      * Metodo abstracto, implementado en las clases Accesorio, Calzado e Indumentaria
      * @return String con la medida indicada
      */
     public abstract String getMedida();
+
 
 
 
