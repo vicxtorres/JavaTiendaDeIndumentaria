@@ -19,6 +19,8 @@ public class Calzado extends Producto
         tipoCalzado = null;
     }
 
+
+
     /**
      * Constructor completo de Calzado
      * @param SKU
@@ -31,14 +33,16 @@ public class Calzado extends Producto
      * @param disciplina
      * @param esOferta
      * @param esNovedad
+     * @param stock
      * @param tipoCalzado ZAPATILLA, BOTIN, OJOTA
      * @param talleNumero
      */
-    public Calzado(int SKU, Date fechaDeIngreso, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, TipoCalzado tipoCalzado, float talleNumero) {
-        super(SKU, fechaDeIngreso, precioCosto, precioVenta, marca, color, descripcion, disciplina, esOferta, esNovedad);
+    public Calzado(int SKU, Date fechaDeIngreso, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, int stock, TipoCalzado tipoCalzado, float talleNumero) {
+        super(SKU, fechaDeIngreso, precioCosto, precioVenta, marca, color, descripcion, disciplina, esOferta, esNovedad, stock);
         this.tipoCalzado = tipoCalzado;
         this.talleNumero = talleNumero;
     }
+
 
 
     ///GETTERS
@@ -64,6 +68,14 @@ public class Calzado extends Producto
     {
         String talle = String.valueOf(talleNumero);
         return talle;
+    }
+
+
+    @Override
+    public String toString() {
+        return "\nCalzado." +
+                "\nTipo: " + tipoCalzado +
+                "\nNumero de talle: " + talleNumero + super.toString();
     }
 
 

@@ -32,15 +32,15 @@ public class Accesorio extends Producto
      * @param disciplina
      * @param esOferta
      * @param esNovedad
+     * @param stock
      * @param tipoAccesorio BOLSO, PELOTA
      * @param tamano Chico, Mediano, Grande
      */
-    public Accesorio(int SKU, Date fechaDeIngreso, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, TipoAccesorio tipoAccesorio, String tamano) {
-        super(SKU, fechaDeIngreso, precioCosto, precioVenta, marca, color, descripcion, disciplina, esOferta, esNovedad);
+    public Accesorio(int SKU, Date fechaDeIngreso, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, int stock, TipoAccesorio tipoAccesorio, String tamano) {
+        super(SKU, fechaDeIngreso, precioCosto, precioVenta, marca, color, descripcion, disciplina, esOferta, esNovedad, stock);
         this.tipoAccesorio = tipoAccesorio;
         this.tamano = tamano;
     }
-
 
     ///GETTERS
     public TipoAccesorio getTipoAccesorio() {
@@ -65,5 +65,13 @@ public class Accesorio extends Producto
     public String getMedida()
     {
         return tamano;
+    }
+
+
+    @Override
+    public String toString() {
+        return "\nAccesorio." +
+                "\nTipo: " + tipoAccesorio +
+                "\nTamano: " + tamano + super.toString();
     }
 }

@@ -1,9 +1,18 @@
 package SistemaDeControl;
 
+import SistemaDeControl.Archivos.ContoladoraArchivos;
 import SistemaDeControl.ClienteProveedor.Cliente;
 import SistemaDeControl.Producto.Accesorio.Accesorio;
 import SistemaDeControl.Producto.Accesorio.TipoAccesorio;
+import SistemaDeControl.Producto.Calzado.Calzado;
+import SistemaDeControl.Producto.Calzado.TipoCalzado;
+import SistemaDeControl.Producto.Color;
+import SistemaDeControl.Producto.Indumentaria.Indumentaria;
+import SistemaDeControl.Producto.Indumentaria.TipoIndumentaria;
+import SistemaDeControl.Producto.Producto;
+import SistemaDeControl.Producto.SetProductos;
 
+import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
@@ -87,6 +96,45 @@ public class Main {
             }
         }while(opcion !=3);
 
+
+
+
+        /*
+              System.out.println("PROBANDO MAIN \nSistema de control de Inventario\n");
+
+        /**
+         * ESTO ES DE PRUEBA NO PREOCUPARSE
+
+
+        System.out.println("Colores disponibles:");
+        for (Color color : Color.values()) {
+            System.out.println(color.name());
+        }
+
+        Date fecha = new Date(2004/03/02);
+
+        Producto zapatillasNike = new Calzado(1,fecha,130,150,"Nike", Color.ROJO,"Duraderas","Running",false,true,1, TipoCalzado.ZAPATILLA,35);
+        Producto remeraNike = new Indumentaria(2,fecha,180,200,"Nike", Color.AZUL,"bien","Futbol",true,false,1, TipoIndumentaria.REMERA,"m");
+        Producto zapatillasNikeDos = new Calzado(1,fecha,130,150,"Nike", Color.ROJO,"Duraderas","Running",false,true,1, TipoCalzado.ZAPATILLA,35);
+
+        SetProductos setProductos = new SetProductos();
+
+
+        setProductos.agregar(zapatillasNike);
+        setProductos.agregar(remeraNike);
+        setProductos.agregar(zapatillasNikeDos);
+
+        ContoladoraArchivos.grabarSetProductos(setProductos, "productos.dat");
+        System.out.println(setProductos.toString()); //FUNCIONAAAAAAAAAAAA cuando ingreso dos iguales aumenta el stock :)
+
+
+        SetProductos otroSet = new SetProductos();
+        System.out.println(otroSet.toString());
+
+        otroSet = ContoladoraArchivos.leerSetProductos("productos.dat");
+        System.out.println(otroSet.toString());
+
+         */
 
 
 

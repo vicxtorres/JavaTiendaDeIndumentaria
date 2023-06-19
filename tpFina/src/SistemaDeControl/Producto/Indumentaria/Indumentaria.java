@@ -1,5 +1,4 @@
 package SistemaDeControl.Producto.Indumentaria;
-
 import SistemaDeControl.Producto.Color;
 import SistemaDeControl.Producto.Producto;
 
@@ -33,15 +32,15 @@ public class Indumentaria extends Producto
      * @param disciplina
      * @param esOferta
      * @param esNovedad
+     * @param stock
      * @param tipoIndumentaria PANTALON, REMERA, SHORT, CALZA, CAMPERA, BUZO, MEDIAS, GORRA
      * @param talleMedida XS, X, M, L, XL, XXL, XXXL
      */
-    public Indumentaria(int SKU, Date fechaDeIngreso, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, TipoIndumentaria tipoIndumentaria, String talleMedida) {
-        super(SKU, fechaDeIngreso, precioCosto, precioVenta, marca, color, descripcion, disciplina, esOferta, esNovedad);
+    public Indumentaria(int SKU, Date fechaDeIngreso, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, int stock, TipoIndumentaria tipoIndumentaria, String talleMedida) {
+        super(SKU, fechaDeIngreso, precioCosto, precioVenta, marca, color, descripcion, disciplina, esOferta, esNovedad, stock);
         this.tipoIndumentaria = tipoIndumentaria;
         this.talleMedida = talleMedida;
     }
-
 
     ///GETTERS
     public TipoIndumentaria getTipoIndumentaria() {
@@ -59,6 +58,7 @@ public class Indumentaria extends Producto
     }
 
 
+
     /**
      * Indumentaria, metodo que retorna la medida
      * @return String -> XS | X | M | L | XL | XXL | XXXL
@@ -66,6 +66,13 @@ public class Indumentaria extends Producto
     @Override
     public String getMedida() {
         return talleMedida;
+    }
+
+    @Override
+    public String toString() {
+        return "\nIndumentaria." +
+                "\nTipo: " + tipoIndumentaria +
+                "\nMedida de talle: " + talleMedida +super.toString();
     }
 
 }
