@@ -7,7 +7,6 @@ public class Cliente implements Serializable{
 private String nombre;
 private String cuil;
 private String domicilio;
-
 private CondicionIVA condicionIVA;
 
 
@@ -94,10 +93,10 @@ private CondicionIVA condicionIVA;
     public String toString() {
         return  "\n-------------------------------------"+
                 "\nCliente\n" +
-                "\nnombre='" + nombre + '\'' +
-                "\ncuil='" + cuil + '\'' +
-                "\ndomicilio='" + domicilio + '\'' +
-                "\ncondicionIVA=" + condicionIVA +
+                "\nNombre: '" + nombre + '\'' +
+                "\nCuil: '" + cuil + '\'' +
+                "\nDomicilio: '" + domicilio + '\'' +
+                "\nCondicion de IVA: " + condicionIVA +
                 "\n-----------------------------------";
     }
 }

@@ -17,13 +17,13 @@ public class ContoladoraArchivos
 {
 
     /**
-     * Graba un ArrayList de cualquier clase en un archivo...
+     * Graba una lista de cualquier clase en un archivo...
      * Utiliza un tipo de dato genérico para reutilizar el algoritmo, el mismo debe implementar la interfaz Serializable.
-     * @param arrayList
+     * @param lista puede ser ListaClientes, ListaProveedores, etc
      * @param nombreArchivo debe terminar en .dat
      * @param <T>
      */
-    public static <T extends Serializable> void grabarArrayList (ArrayList<T> arrayList, String nombreArchivo)
+    public static <T extends Serializable> void grabarListas (T lista, String nombreArchivo)
     {
         FileOutputStream fileOutputStream=null;
         ObjectOutputStream objectOutputStream = null;
@@ -33,10 +33,7 @@ public class ContoladoraArchivos
             fileOutputStream = new FileOutputStream(nombreArchivo);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
-            for(T elemento : arrayList)
-            {
-                objectOutputStream.writeObject(elemento);
-            }
+            objectOutputStream.writeObject(lista); //graba directamente la lista enviada por parametro
         }
         catch (IOException ex)
         {
@@ -154,9 +151,9 @@ public class ContoladoraArchivos
      * @param nombreArchivo
      * @return un ArrayList
      */
-    public static <T extends Serializable> ArrayList<T> leerArrayList (String nombreArchivo)
+    public static <T extends Serializable> T leerLista (String nombreArchivo)
     {
-        ArrayList<T> arrayList =new ArrayList<T>();
+        T lista = null;
         FileInputStream fileInputStream=null;
         ObjectInputStream objectInputStream=null;
 
@@ -165,11 +162,7 @@ public class ContoladoraArchivos
             fileInputStream = new FileInputStream(nombreArchivo);
             objectInputStream = new ObjectInputStream(fileInputStream);
 
-            while(true)
-            {
-                T aux = (T) objectInputStream.readObject();
-                arrayList.add(aux);
-            }
+            lista = (T) objectInputStream.readObject();
         }
         catch (EOFException ex)
         {
@@ -197,7 +190,7 @@ public class ContoladoraArchivos
                 ex.getMessage();
             }
         }
-        return arrayList;
+        return lista;
     }
 
 
@@ -467,6 +460,38 @@ public class ContoladoraArchivos
         return remito;
     }
 
+
+    public static void grabarProducto (Producto producto, String nombreArchivo)
+    {
+        FileOutputStream fileOutputStream=null;
+        ObjectOutputStream objectOutputStream = null;
+
+        try
+        {
+            fileOutputStream = new FileOutputStream(nombreArchivo);
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(producto);
+        }
+        catch (IOException ex)
+        {
+            ex.getMessage();
+        }
+
+        finally {
+            try
+            {
+                if(fileOutputStream!=null)
+                    fileOutputStream.close();
+
+                if(objectOutputStream!=null)
+                    objectOutputStream.close();
+
+            }catch (IOException ex)
+            {
+                ex.getMessage();
+            }
+        }
+    }
 
 
 }

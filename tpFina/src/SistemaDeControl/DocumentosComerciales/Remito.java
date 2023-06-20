@@ -11,7 +11,7 @@ private Proveedor proveedor;
         /**
          * constructores
          * @param numero de documento
-         * @param listadoProductos  el listado de productos que ocntiene
+         * @param listadoProductos  el listado de productos que contiene
          * @param proveedor el proveedor con sus datos
          */
         public Remito(int numero, SetProductos listadoProductos, Proveedor proveedor) {

@@ -1,11 +1,15 @@
 package SistemaDeControl;
 
 import SistemaDeControl.Archivos.ContoladoraArchivos;
+import SistemaDeControl.Archivos.GrabadoraProductos;
 import SistemaDeControl.ClienteProveedor.Cliente;
 import SistemaDeControl.ClienteProveedor.CondicionIVA;
+import SistemaDeControl.ClienteProveedor.Listas.ListaClientes;
 import SistemaDeControl.ClienteProveedor.Proveedor;
 import SistemaDeControl.DocumentosComerciales.Documento;
 import SistemaDeControl.DocumentosComerciales.Factura;
+import SistemaDeControl.DocumentosComerciales.Listas.ListaFacturas;
+import SistemaDeControl.DocumentosComerciales.Listas.ListaRemitos;
 import SistemaDeControl.Excepciones.ProductoInexistente;
 import SistemaDeControl.Producto.Accesorio.Accesorio;
 import SistemaDeControl.Producto.Accesorio.TipoAccesorio;
@@ -25,6 +29,8 @@ import static SistemaDeControl.Archivos.ContoladoraArchivos.*;
 public class Main {
     public static void main(String[] args)
     {
+        Scanner scan = new Scanner(System.in);
+
         /*
         Producto adidasEntrap = new Calzado(123,10000, 15000, "Adidas",Color.MULTICOLOR,"Entrap es un nuevo producto para Unisex de adidas. ","Futbol", false, false, 3, TipoCalzado.ZAPATILLA, 40 );
         Producto adidasTresEstrellas = new Indumentaria(133,15000, 25000, "Adidas",Color.GRIS,"100% Argentina. Remera estampada para seguir festejando a la selección en todo momento y lugar. El tejido de algodón suave te envuelve con comodidad y el logo adidas con los colores de la bandera + el escudo de la AFA + la tres estrellas, dejan bien en claro a qué selección apoyás. Nuestros productos de algodón apoyan el cultivo de algodón sostenible.","Urbano", false, true, 123, TipoIndumentaria.REMERA,"XL" );
@@ -45,14 +51,26 @@ public class Main {
 
         Factura factura1 = new Factura(1, nuevoSet, cliente1, 100000);
         //System.out.println(factura1);
-        grabarFactura(factura1, "Factura 1");
+        grabarFactura(factura1, "Factura1.dat");
 
-         */
+
+        ListaClientes lista = new ListaClientes();
+        lista.agregar(cliente1);
+
+        System.out.println("\n*****GRABANDO EN ARCHIVO******");
+        ContoladoraArchivos.grabarListas(lista, "listaCliente.dat");
+        ListaClientes nuevalistt = new ListaClientes();
+        nuevalistt = ContoladoraArchivos.leerLista("listaCliente.dat");
+        System.out.println(nuevalistt.toString());
+
+
         Documento factura2 = leerFactura("Factura 1");
         System.out.println(factura2.toString());
 
+        */
 
-        Scanner scan = new Scanner(System.in);
+
+
 
 
         System.out.println("--------------------------------------------------");
@@ -84,6 +102,13 @@ public class Main {
                         switch (opcionVerStock) {
                             case 1:
 
+                                /**
+                                 * Puedo mostrarlo directamente asi por si sufre modificaciones el archivo
+                                 */
+                                stock = ContoladoraArchivos.leerSetProductos("SetProductos.dat");
+                                System.out.println("STOCK COMPLETO:" + stock.toString());
+
+                                /*
                                 try {
                                     System.out.println(stock.listar());
                                 }
@@ -91,13 +116,14 @@ public class Main {
                                 {
                                     e.getCause();
                                 }
+                                 */
                                 break;
                             case 2:
                                 for (Producto p : stock.getProductos())
                                 {
                                     if(p instanceof Calzado)
                                     {
-                                        sb.append("-----------------------"+p+"\n");
+                                       sb.append("-----------------------"+p+"\n");
                                     }
                                 }
                                 System.out.println(sb);
@@ -170,46 +196,9 @@ public class Main {
 
 
 
-
-
-        /*
-              System.out.println("PROBANDO MAIN \nSistema de control de Inventario\n");
-
-        /**
-         * ESTO ES DE PRUEBA NO PREOCUPARSE
-
-
-        System.out.println("Colores disponibles:");
-        for (Color color : Color.values()) {
-            System.out.println(color.name());
-        }
-
-        Date fecha = new Date(2004/03/02);
-
-        Producto zapatillasNike = new Calzado(1,fecha,130,150,"Nike", Color.ROJO,"Duraderas","Running",false,true,1, TipoCalzado.ZAPATILLA,35);
-        Producto remeraNike = new Indumentaria(2,fecha,180,200,"Nike", Color.AZUL,"bien","Futbol",true,false,1, TipoIndumentaria.REMERA,"m");
-        Producto zapatillasNikeDos = new Calzado(1,fecha,130,150,"Nike", Color.ROJO,"Duraderas","Running",false,true,1, TipoCalzado.ZAPATILLA,35);
-
-        SetProductos setProductos = new SetProductos();
-
-
-        setProductos.agregar(zapatillasNike);
-        setProductos.agregar(remeraNike);
-        setProductos.agregar(zapatillasNikeDos);
-
-        ContoladoraArchivos.grabarSetProductos(setProductos, "productos.dat");
-        System.out.println(setProductos.toString()); //FUNCIONAAAAAAAAAAAA cuando ingreso dos iguales aumenta el stock :)
-
-
-        SetProductos otroSet = new SetProductos();
-        System.out.println(otroSet.toString());
-
-        otroSet = ContoladoraArchivos.leerSetProductos("productos.dat");
-        System.out.println(otroSet.toString());
-
-         */
-
-
-
     }
+
+
+
+
 }

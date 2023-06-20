@@ -73,7 +73,7 @@ public class Documento implements Serializable {
   @Override
   public String toString() {
     return  "\nDocumento" + "\n" +
-            "\nNumero=" + numero + "\n" +
+            "\nNumero: " + numero + "\n" +
             "\n" + listadoProductos ;
   }
 }

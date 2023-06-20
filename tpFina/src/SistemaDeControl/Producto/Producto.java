@@ -2,6 +2,7 @@ package SistemaDeControl.Producto;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 public abstract class Producto implements Comparable, Serializable
 {
@@ -10,7 +11,6 @@ public abstract class Producto implements Comparable, Serializable
     private double precioVenta;
     private String marca;
     private Color color;
-    private String descripcion;
     private String disciplina;
     private boolean esOferta;
     private boolean esNovedad;
@@ -24,7 +24,6 @@ public abstract class Producto implements Comparable, Serializable
         precioVenta = 0;
         marca = "";
         color = null;
-        descripcion = "";
         disciplina = "";
         esOferta = false;
         esNovedad = false;
@@ -50,7 +49,6 @@ public abstract class Producto implements Comparable, Serializable
         this.precioVenta = precioVenta;
         this.marca = marca;
         this.color = color;
-        this.descripcion = descripcion;
         this.disciplina = disciplina;
         this.esOferta = esOferta;
         this.esNovedad = esNovedad;
@@ -76,10 +74,6 @@ public abstract class Producto implements Comparable, Serializable
 
     public Color getColor() {
         return color;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
     }
 
     public String getDisciplina() {
@@ -120,9 +114,6 @@ public abstract class Producto implements Comparable, Serializable
         this.color = color;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 
     public void setDisciplina(String disciplina) {
         this.disciplina = disciplina;
@@ -145,12 +136,10 @@ public abstract class Producto implements Comparable, Serializable
     public String toString() {
         return
                 "\nSKU: " + SKU +
-                "\nFecha de Ingreso: "  +
                 "\nPrecio de costo: " + precioCosto +
                 "\nPrecio de venta: " + precioVenta +
                 "\nMarca: " + marca +
-                "\nColor=" + color +
-                "\nDescripcion: " + descripcion +
+                "\nColor: " + color +
                 "\nDisciplina: " + disciplina +
                 "\nEs oferta: " + esOferta +
                 "\nEs novedad: " + esNovedad +
@@ -182,7 +171,6 @@ public abstract class Producto implements Comparable, Serializable
     }
 
 
-
     /**
      * Metodo abstracto, implementado en las clases Accesorio, Calzado e Indumentaria
      * @return String con la medida indicada
@@ -192,4 +180,33 @@ public abstract class Producto implements Comparable, Serializable
 
 
 
+
+ /*
+   SI PONGO EL EQUALS NO ME ANDA LO DE ARCHIVOS NI IDEA
+
+   @Override
+    public boolean equals(Object obj) {
+        boolean rta = false;
+        if (obj != null) {
+
+            if (obj instanceof Producto) {
+                Producto aux = (Producto) obj;
+
+                if (getMarca().equals(aux.getMarca()) && (getSKU() == aux.getSKU()))
+                {
+                    rta = true;
+                }
+            }
+        }
+        return rta;
+    }
+
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(SKU, precioCosto, precioVenta, marca, color, disciplina, esOferta, esNovedad, stock);
+    }
+
+
+  */
 }

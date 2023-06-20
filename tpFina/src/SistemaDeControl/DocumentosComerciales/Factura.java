@@ -82,7 +82,7 @@ private double totalFactura;
      */
     @Override
     public String toString() {
-        return  "\n-------------------------------------"+
+        return
                 "\nFactura\n" +
                  cliente + "\n" +
                 "\n-------------------------------------"+
