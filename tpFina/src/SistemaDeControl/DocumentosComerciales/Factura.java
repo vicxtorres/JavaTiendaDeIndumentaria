@@ -2,12 +2,15 @@ package SistemaDeControl.DocumentosComerciales;
 
 import SistemaDeControl.ClienteProveedor.Cliente;
 import SistemaDeControl.ClienteProveedor.Proveedor;
+import SistemaDeControl.Interfaces.I_Convertir_JsonObject;
 import SistemaDeControl.Producto.Producto;
 import SistemaDeControl.Producto.SetProductos;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Factura extends Documento{
+import java.io.Serializable;
+
+public class Factura extends Documento {
 
 private Cliente cliente;
 
@@ -84,14 +87,14 @@ private double totalFactura;
      */
     @Override
     public String toString() {
-        return
+        return  "==========================================\n" +
                 "\nFactura\n" +
-                 cliente + "\n" +
+                super.toString() +
+                "\n-------------------------------------"+
+                cliente+
                 "\n-------------------------------------"+
                 "\nTotal Factura =" + totalFactura +"\n" +
-                "\n-------------------------------------"+
-                super.toString() +
-                "\n-----------------------------------";
+                "==========================================\n";
     }
 
     /**Json

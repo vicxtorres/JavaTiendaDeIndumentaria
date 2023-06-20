@@ -19,13 +19,13 @@ public class ContoladoraArchivos
 {
 
     /**
-     * Graba una lista de cualquier clase en un archivo...
+     * Graba una objeto en un archivo...
      * Utiliza un tipo de dato genérico para reutilizar el algoritmo, el mismo debe implementar la interfaz Serializable.
-     * @param lista puede ser ListaClientes, ListaProveedores, etc
+     * @param objeto puede ser ListaClientes, ListaProveedores, MapaFacturas, MapaRemitos, SetProductos, Remito, Factura, etc
      * @param nombreArchivo debe terminar en .dat
      * @param <T>
      */
-    public static <T extends Serializable> void grabarListas (T lista, String nombreArchivo)
+    public static <T extends Serializable> void grabar (T objeto, String nombreArchivo)
     {
         FileOutputStream fileOutputStream=null;
         ObjectOutputStream objectOutputStream = null;
@@ -35,7 +35,7 @@ public class ContoladoraArchivos
             fileOutputStream = new FileOutputStream(nombreArchivo);
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
-            objectOutputStream.writeObject(lista); //graba directamente la lista enviada por parametro
+            objectOutputStream.writeObject(objeto); //graba directamente la lista enviada por parametro
         }
         catch (IOException ex)
         {
@@ -58,104 +58,16 @@ public class ContoladoraArchivos
         }
     }
 
-
-
+    
     /**
-     * Graba un HashMap de cualquier tipo en un archivo. Utiliza un entrySet para guardar cada elemento.
-     * @param hashMap
-     * @param nombreArchivo
-     * @param <K>
-     * @param <V>
-     */
-    public static <K extends Serializable, V extends Serializable> void grabarHashMap (HashMap<K,V> hashMap, String nombreArchivo)
-    {
-        FileOutputStream fileOutputStream=null;
-        ObjectOutputStream objectOutputStream = null;
-
-        try
-        {
-            fileOutputStream = new FileOutputStream(nombreArchivo);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
-
-            for (Map.Entry<K, V> entry : hashMap.entrySet()) {
-                K clave = entry.getKey();
-                V valor = entry.getValue();
-                objectOutputStream.writeObject(clave);
-                objectOutputStream.writeObject(valor);
-            }
-        }
-        catch (IOException ex)
-        {
-            ex.getMessage();
-        }
-
-        finally {
-            try
-            {
-                if(fileOutputStream!=null)
-                    fileOutputStream.close();
-
-                if(objectOutputStream!=null)
-                    objectOutputStream.close();
-
-            }catch (IOException ex)
-            {
-                ex.getMessage();
-            }
-        }
-    }
-
-
-
-    /**
-     * Graba un TreeSet de Producto
-     * @param nombreArchivo debe terminar en .dat
-     */
-    public static void grabarSetProductos (SetProductos setProductos, String nombreArchivo)
-    {
-        FileOutputStream fileOutputStream=null;
-        ObjectOutputStream objectOutputStream = null;
-
-        try
-        {
-            fileOutputStream = new FileOutputStream(nombreArchivo);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
-
-            objectOutputStream.writeObject(setProductos);
-        }
-        catch (IOException ex)
-        {
-            ex.getMessage();
-        }
-
-        finally {
-            try
-            {
-                if(fileOutputStream!=null)
-                    fileOutputStream.close();
-
-                if(objectOutputStream!=null)
-                    objectOutputStream.close();
-
-            }catch (IOException ex)
-            {
-                ex.getMessage();
-            }
-        }
-    }
-
-
-
-    /**
-     * Lee el archivo enviado y lo guarda en un ArrayList del tipo que sea
-     *
+     * Lee el archivo enviado y lo retorna como el objeto que lee el archivo (T)
      * @param <T>
      * @param nombreArchivo
-     * @return un ArrayList
+     * @return objeto de tipo T
      */
-    public static <T extends Serializable> T leerLista (String nombreArchivo)
+    public static <T extends Serializable> T leer (String nombreArchivo)
     {
-        T lista = null;
+        T objeto = null;
         FileInputStream fileInputStream=null;
         ObjectInputStream objectInputStream=null;
 
@@ -164,7 +76,8 @@ public class ContoladoraArchivos
             fileInputStream = new FileInputStream(nombreArchivo);
             objectInputStream = new ObjectInputStream(fileInputStream);
 
-            lista = (T) objectInputStream.readObject();
+            objeto = (T) objectInputStream.readObject();
+
         }
         catch (EOFException ex)
         {
@@ -192,14 +105,14 @@ public class ContoladoraArchivos
                 ex.getMessage();
             }
         }
-        return lista;
+        return objeto;
     }
 
 
     /**
-     * Lee el archivo enviado y lo guarda en un TreeSet de Producto
+     * Lee el archivo enviado y lo guarda en un Set de Producto
      * @param nombreArchivo
-     * @return TreeSet de Producto
+     * @return Set de Producto
      */
     public static SetProductos leerSetProductos (String nombreArchivo)
     {
@@ -245,15 +158,13 @@ public class ContoladoraArchivos
 
 
     /**
-     * Lee el archivo enviado y lo guarda en un HashMap
+     * Lee una factura desde el archivo
      * @param nombreArchivo
-     * @return un HashMap
-     * @param <K>
-     * @param <V>
+     * @return
      */
-    public static <K extends Serializable, V extends Serializable> HashMap<K,V> leerHashMap (String nombreArchivo)
+    public static Documento leerDocumento (String nombreArchivo)
     {
-        HashMap<K,V> hashMap = new HashMap<K, V>();
+        Documento documento = new Documento();
         FileInputStream fileInputStream=null;
         ObjectInputStream objectInputStream=null;
 
@@ -262,12 +173,7 @@ public class ContoladoraArchivos
             fileInputStream = new FileInputStream(nombreArchivo);
             objectInputStream = new ObjectInputStream(fileInputStream);
 
-
-            while (true) {
-                K clave = (K) objectInputStream.readObject();
-                V valor = (V) objectInputStream.readObject();
-                hashMap.put(clave, valor);
-            }
+            documento = (Documento) objectInputStream.readObject();
         }
         catch (EOFException ex)
         {
@@ -295,215 +201,18 @@ public class ContoladoraArchivos
                 ex.getMessage();
             }
         }
-        return hashMap;
+        return documento;
     }
 
-
-    /** graba una factura en un archivo
-     *
-     * @param factura la factura cargada
-     * @param nombreArchivo nombre del archivo
+    
+    
+    /** Utiliza un numero de factura pasado por teclado para modificar STOCK
+     * @param numeroFactura
      */
-    public static void grabarFactura (Factura factura, String nombreArchivo)
-    {
-        FileOutputStream fileOutputStream=null;
-        ObjectOutputStream objectOutputStream = null;
-
-        try
-        {
-            fileOutputStream = new FileOutputStream(nombreArchivo);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(factura);
-        }
-        catch (IOException ex)
-        {
-            ex.getMessage();
-        }
-
-        finally {
-            try
-            {
-                if(fileOutputStream!=null)
-                    fileOutputStream.close();
-
-                if(objectOutputStream!=null)
-                    objectOutputStream.close();
-
-            }catch (IOException ex)
-            {
-                ex.getMessage();
-            }
-        }
-    }
-
-
-    /**
-     * leer una factura desde un archivo
-     */
-    public static Documento leerFactura (String nombreArchivo)
-    {
-        Documento factura = new Factura();
-        FileInputStream fileInputStream=null;
-        ObjectInputStream objectInputStream=null;
-
-        try
-        {
-            fileInputStream = new FileInputStream(nombreArchivo);
-            objectInputStream = new ObjectInputStream(fileInputStream);
-
-            factura = (Documento) objectInputStream.readObject();
-        }
-        catch (EOFException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
-        catch (ClassNotFoundException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        catch (IOException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
-        finally
-        {
-            try
-            {
-                if(fileInputStream!=null)
-                    fileInputStream.close();
-                if(objectInputStream!=null)
-                    objectInputStream.close();
-            }
-            catch (IOException ex)
-            {
-                ex.getMessage();
-            }
-        }
-        return factura;
-    }
-
-
-    /**AHORA LO MISMO CON REMITOS
-     *
-     */
-
-    public static void grabarRemito (Remito remito, String nombreArchivo)
-    {
-        FileOutputStream fileOutputStream=null;
-        ObjectOutputStream objectOutputStream = null;
-
-        try
-        {
-            fileOutputStream = new FileOutputStream(nombreArchivo);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(remito);
-        }
-        catch (IOException ex)
-        {
-            ex.getMessage();
-        }
-
-        finally {
-            try
-            {
-                if(fileOutputStream!=null)
-                    fileOutputStream.close();
-
-                if(objectOutputStream!=null)
-                    objectOutputStream.close();
-
-            }catch (IOException ex)
-            {
-                ex.getMessage();
-            }
-        }
-    }
-
-
-    public static Documento leerRemito (String nombreArchivo)
-    {
-        Documento remito = new Remito();
-        FileInputStream fileInputStream=null;
-        ObjectInputStream objectInputStream=null;
-
-        try
-        {
-            fileInputStream = new FileInputStream(nombreArchivo);
-            objectInputStream = new ObjectInputStream(fileInputStream);
-
-            remito = (Documento) objectInputStream.readObject();
-        }
-        catch (EOFException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
-        catch (ClassNotFoundException e)
-        {
-            System.out.println(e.getMessage());
-        }
-        catch (IOException ex)
-        {
-            System.out.println(ex.getMessage());
-        }
-        finally
-        {
-            try
-            {
-                if(fileInputStream!=null)
-                    fileInputStream.close();
-                if(objectInputStream!=null)
-                    objectInputStream.close();
-            }
-            catch (IOException ex)
-            {
-                ex.getMessage();
-            }
-        }
-        return remito;
-    }
-
-
-    public static void grabarProducto (Producto producto, String nombreArchivo)
-    {
-        FileOutputStream fileOutputStream=null;
-        ObjectOutputStream objectOutputStream = null;
-
-        try
-        {
-            fileOutputStream = new FileOutputStream(nombreArchivo);
-            objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(producto);
-        }
-        catch (IOException ex)
-        {
-            ex.getMessage();
-        }
-
-        finally {
-            try
-            {
-                if(fileOutputStream!=null)
-                    fileOutputStream.close();
-
-                if(objectOutputStream!=null)
-                    objectOutputStream.close();
-
-            }catch (IOException ex)
-            {
-                ex.getMessage();
-            }
-        }
-    }
-
-
-    /** metodo que utiliza un numero de factura pasado por teclado
-     * para modificar stock
-     */
-
     public static void modificarConFactura (int numeroFactura)
     {
         String numero = "Factura" + numeroFactura +".dat";
-        Documento factura = ContoladoraArchivos.leerFactura(numero);
+        Documento factura = ContoladoraArchivos.leerDocumento(numero);
         SetProductos stock = ContoladoraArchivos.leerSetProductos("Stock de tienda");
         for(Producto p : factura.getListadoProductos().getProductos())
         {
@@ -515,23 +224,34 @@ public class ContoladoraArchivos
                 e.getMessage();
             }
         }
-        ContoladoraArchivos.grabarSetProductos(stock, "Stock de tienda");
+        ContoladoraArchivos.grabar(stock, "Stock de tienda");
 
     }
 
+
+    /** Utiliza un numero de remito pasado por teclado para modificar STOCK
+     * @param numeroRemito
+     */
     public static void modificarStockConRemito (int numeroRemito)
     {
         String numero = "Remito" + numeroRemito +".dat";
-        Documento remito = ContoladoraArchivos.leerRemito(numero);
+        Documento remito = ContoladoraArchivos.leerDocumento(numero);
         SetProductos stock = ContoladoraArchivos.leerSetProductos("Stock de tienda");
         for(Producto p : remito.getListadoProductos().getProductos())
         {
             stock.agregar(p);
         }
-        ContoladoraArchivos.grabarSetProductos(stock, "Stock de tienda");
+        ContoladoraArchivos.grabar(stock, "Stock de tienda");
 
     }
 
+    
+    
+    /**
+     * Modifica el stock de un producto manualmente
+     * @param sku del producto a modificar
+     * @param nuevoStock del producto
+     */
     public static void modificarStockManualmente (int sku, int nuevoStock)
     {
         SetProductos stock = ContoladoraArchivos.leerSetProductos("Stock de tienda");
@@ -542,7 +262,7 @@ public class ContoladoraArchivos
                 p.setStock(nuevoStock);
             }
         }
-        ContoladoraArchivos.grabarSetProductos(stock, "Stock de tienda");
+        ContoladoraArchivos.grabar(stock, "Stock de tienda");
     }
 
 
@@ -555,15 +275,14 @@ public class ContoladoraArchivos
     public static String verFactura (int numeroFactura)
     {
         String numero = "Factura" + numeroFactura +".dat";
-        Documento factura = ContoladoraArchivos.leerFactura(numero);
+        Documento factura = ContoladoraArchivos.leerDocumento(numero);
         return factura.toString();
-
     }
 
     public static String verRemito (int numeroRemito)
     {
         String numero = "Remito" +numeroRemito+".dat";
-        Documento remito = ContoladoraArchivos.leerRemito(numero);
+        Documento remito = ContoladoraArchivos.leerDocumento(numero);
         return remito.toString();
     }
 }

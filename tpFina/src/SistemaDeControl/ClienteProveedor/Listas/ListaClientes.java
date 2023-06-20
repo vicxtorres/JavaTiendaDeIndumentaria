@@ -1,11 +1,11 @@
 package SistemaDeControl.ClienteProveedor.Listas;
 
 import SistemaDeControl.ClienteProveedor.Cliente;
+import SistemaDeControl.Excepciones.ColeccionVacia;
 import SistemaDeControl.Excepciones.CuitYaAgregado;
-import SistemaDeControl.Excepciones.ListaVacia;
 import SistemaDeControl.Excepciones.NoExisteElCuil;
 import SistemaDeControl.Interfaces.I_Convertir_JsonArray;
-import SistemaDeControl.Interfaces.I_metodosListas;
+import SistemaDeControl.Interfaces.I_metodosColeccion;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class ListaClientes implements I_metodosListas<Cliente>, Serializable , I_Convertir_JsonArray {
+public class ListaClientes implements I_metodosColeccion<Cliente>, Serializable , I_Convertir_JsonArray {
 
     private ArrayList<Cliente> lista;
 
@@ -65,10 +65,10 @@ public class ListaClientes implements I_metodosListas<Cliente>, Serializable , I
     }
 
     @Override
-    public String listar() throws ListaVacia {
+    public String listar() throws ColeccionVacia {
         if(lista.isEmpty())
         {
-            throw new ListaVacia("No hay clientes ingresados.");
+            throw new ColeccionVacia("No hay clientes ingresados.");
         }
         StringBuilder sb = new StringBuilder();
         for(Cliente cliente : lista)
@@ -105,6 +105,11 @@ public class ListaClientes implements I_metodosListas<Cliente>, Serializable , I
             jsonArray.put ( c.convertirJsonObject () );
         }
         return jsonArray;
+    }
 
+
+    @Override
+    public String toString() {
+        return "Lista de Clientes: " + lista ;
     }
 }

@@ -6,7 +6,9 @@ import SistemaDeControl.Producto.SetProductos;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Remito extends Documento implements I_Convertir_JsonObject {
+import java.io.Serializable;
+
+public class Remito extends Documento {
 
     private Proveedor proveedor;
 
@@ -68,14 +70,13 @@ public class Remito extends Documento implements I_Convertir_JsonObject {
 
     @Override
     public String toString() {
-        return "==========================================\n" +
+        return
                 "==========================================\n" +
                 "\nRemito\n" +
-                proveedor + "\n" +
+                        super.toString ( )   +
                 "\n-------------------------------------" +
-                super.toString ( ) +
+                        proveedor +
                 "\n-------------------------------------\n" +
-                "==========================================\n" +
                 "==========================================\n";
 
     }

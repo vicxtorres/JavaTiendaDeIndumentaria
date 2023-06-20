@@ -1,17 +1,17 @@
 package SistemaDeControl;
 
 import SistemaDeControl.Archivos.ContoladoraArchivos;
-import SistemaDeControl.Archivos.GrabadoraProductos;
 import SistemaDeControl.ClienteProveedor.Cliente;
 import SistemaDeControl.ClienteProveedor.CondicionIVA;
 import SistemaDeControl.ClienteProveedor.Listas.ListaClientes;
+import SistemaDeControl.ClienteProveedor.Listas.ListaProveedores;
 import SistemaDeControl.ClienteProveedor.Proveedor;
 import SistemaDeControl.DocumentosComerciales.Documento;
 import SistemaDeControl.DocumentosComerciales.Factura;
-import SistemaDeControl.DocumentosComerciales.Listas.ListaFacturas;
-import SistemaDeControl.DocumentosComerciales.Listas.ListaRemitos;
+import SistemaDeControl.DocumentosComerciales.Mapas.MapFacturas;
+import SistemaDeControl.DocumentosComerciales.Mapas.MapRemitos;
+import SistemaDeControl.Archivos.JsonUtiles;
 import SistemaDeControl.DocumentosComerciales.Remito;
-import SistemaDeControl.Excepciones.ProductoInexistente;
 import SistemaDeControl.Producto.Accesorio.Accesorio;
 import SistemaDeControl.Producto.Accesorio.TipoAccesorio;
 import SistemaDeControl.Producto.Calzado.Calzado;
@@ -21,8 +21,9 @@ import SistemaDeControl.Producto.Indumentaria.Indumentaria;
 import SistemaDeControl.Producto.Indumentaria.TipoIndumentaria;
 import SistemaDeControl.Producto.Producto;
 import SistemaDeControl.Producto.SetProductos;
+import org.json.JSONArray;
+import org.json.JSONException;
 
-import java.util.Date;
 import java.util.Scanner;
 
 import static SistemaDeControl.Archivos.ContoladoraArchivos.*;
@@ -32,66 +33,76 @@ public class Main {
     {
         Scanner scan = new Scanner(System.in);
 
+
+        /**
+         * Creacion de archivos
+         */
         /*
-        Producto adidasEntrap = new Calzado(123,10000, 15000, "Adidas",Color.MULTICOLOR,"Futbol", false, false, 3, TipoCalzado.ZAPATILLA, 40 );
+        Producto adidasEntrap = new Calzado(123,10000, 15000, "Adidas", Color.MULTICOLOR,"Futbol", false, false, 3, TipoCalzado.ZAPATILLA, 40 );
         Producto adidasTresEstrellas = new Indumentaria(133,15000, 25000, "Adidas",Color.GRIS,"Urbano", false, true, 123, TipoIndumentaria.REMERA,"XL" );
         Producto pelotaArgentum22 = new Accesorio(333, 12000,43000,"Adidas", Color.MULTICOLOR, "Futbol", false, true, 122, TipoAccesorio.PELOTA,"5" );
-
 
 
         Producto nikeHuarache = new Calzado(1, 30000, 45000, "Nike", Color.NEGRO,"Training", false, false, 5, TipoCalzado.ZAPATILLA, 45);
         Producto camisetaFrancia = new Indumentaria(2, 25000, 30000, "Nike", Color.AZUL, "Futbol", false, true, 10, TipoIndumentaria.REMERA, "L");
         Producto bolsoSeleccion = new Accesorio(34, 45000, 60000, "Adidas", Color.GRIS,"Futbol", true, true, 100, TipoAccesorio.BOLSO, "chico");
 
-*/
-        /*
+
         SetProductos nuevoSet = new SetProductos();
         nuevoSet.agregar(adidasEntrap);
         nuevoSet.agregar(adidasTresEstrellas);
         nuevoSet.agregar(pelotaArgentum22);
-*/
 
-/*
+
         SetProductos set2 = new SetProductos();
         set2.agregar(nikeHuarache);
         set2.agregar(camisetaFrancia);
         set2.agregar(bolsoSeleccion);
-*/
 
 
+        ListaClientes listaClientes = new ListaClientes();
+        Cliente cliente1 = new Cliente("Axel", "20-235432134-9", "Mexico 1483", CondicionIVA.IVA_EXENTO);
+        listaClientes.agregar(cliente1);
 
 
-        //grabarSetProductos(nuevoSet,"Stock de tienda");
-        //Cliente cliente1 = new Cliente("Axel", "20-235432134-9", "Mexico 1483", CondicionIVA.IVA_EXENTO);
-        //Proveedor proveedor1 = new Proveedor("Vic", "28-346542340-5","Catamarca 123", CondicionIVA.RESPONSABLE_INSCRIPTO);
+        ListaProveedores listaProveedores = new ListaProveedores();
+        Proveedor proveedor1 = new Proveedor("Vic", "28-346542340-5","Catamarca 123", CondicionIVA.RESPONSABLE_INSCRIPTO);
+        listaProveedores.agregar(proveedor1);
 
 
-        /*
         Factura factura1 = new Factura(1, nuevoSet, cliente1, 100000);
-        System.out.println(factura1);
-        grabarFactura(factura1, "Factura1.dat");
+        MapFacturas mapaFacturas = new MapFacturas();
+        mapaFacturas.agregar(factura1);
 
-         */
-        //Remito remito1 = new Remito(001,set2,proveedor1);
-        //grabarRemito(remito1, "Remito1.dat");
 
-       // ListaClientes lista = new ListaClientes();
-       // lista.agregar(cliente1);
+        Remito remito1 = new Remito(001,set2,proveedor1);
+        MapRemitos mapaRemitos = new MapRemitos();
+        mapaRemitos.agregar(remito1);
 
-            /*
+
+
         System.out.println("\n*****GRABANDO EN ARCHIVO******");
-        ContoladoraArchivos.grabarListas(lista, "listaCliente.dat");
-        ListaClientes nuevalistt = new ListaClientes();
-        nuevalistt = ContoladoraArchivos.leerLista("listaCliente.dat");
-        System.out.println(nuevalistt.toString());
-*/
 
-        Documento factura2 = leerFactura("Factura1.dat");
+        grabar(nuevoSet,"StockDeTienda.dat");
+        grabar(factura1, "Factura1.dat");
+        grabar(remito1, "Remito1.dat");
+        grabar(listaClientes, "ListaClientes.dat");
+        grabar(listaProveedores, "ListaProveedores.dat");
+        grabar(mapaRemitos,"MapaRemitos.dat");
+        grabar(mapaFacturas,"MapaFacturas.dat");
+
+
+        System.out.println("\n*****LECTURA DE ARCHIVOS******");
+        ListaClientes nuevaListaClientes = leer("ListaClientes.dat");
+        System.out.println("***LISTA DE CLIENTES***" + nuevaListaClientes.toString());
+
+        Documento factura2 = leerDocumento("Factura1.dat");
         System.out.println(factura2.toString());
-        //Documento remito2 = leerRemito("Remito1.dat");
-        //System.out.println(remito2.toString());
 
+        Documento remito2 = leerDocumento("Remito1.dat");
+        System.out.println(remito2.toString());
 
+*/
 
 
         System.out.println("--------------------------------------------------");
@@ -105,6 +116,8 @@ public class Main {
                     "3)Ver documentos Comerciales\n" +
                     "4)Cerrar Programa.\n");
             opcion = scan.nextInt();
+
+
             switch (opcion) {
                 case 1:
                     System.out.println("-------------------------\n");
@@ -113,7 +126,7 @@ public class Main {
                     int opcionVerStock;
                     do {
                         StringBuilder sb = new StringBuilder();
-                        SetProductos stock =  leerSetProductos("Stock de tienda");
+                        SetProductos stock =  leerSetProductos("StockDeTienda.dat");
                         System.out.println("\nElija una opcion:\n" +
                                 "1)Ver Stock Completo\n" +
                                 "2)Ver Calzado.\n" +
@@ -121,24 +134,16 @@ public class Main {
                                 "4)Ver Accesorios.\n" +
                                 "5)Salir.");
                         opcionVerStock = scan.nextInt();
+
                         switch (opcionVerStock) {
                             case 1:
 
                                 /**
                                  * Puedo mostrarlo directamente asi por si sufre modificaciones el archivo
                                  */
-                                stock = ContoladoraArchivos.leerSetProductos("Stock de tienda");
+                                stock = ContoladoraArchivos.leerSetProductos("StockDeTienda.dat");
                                 System.out.println("STOCK COMPLETO:" + stock.toString());
 
-                                /*
-                                try {
-                                    System.out.println(stock.listar());
-                                }
-                                catch (ProductoInexistente e)
-                                {
-                                    e.getCause();
-                                }
-                                 */
                                 break;
                             case 2:
                                 for (Producto p : stock.getProductos())
@@ -149,8 +154,8 @@ public class Main {
                                     }
                                 }
                                 System.out.println(sb);
-
                                 break;
+
                             case 3:
                                 ///funciones para mostrar el stock de indumentaria.
                                 for (Producto p : stock.getProductos())
@@ -161,8 +166,8 @@ public class Main {
                                     }
                                 }
                                 System.out.println(sb);
-
                                 break;
+
                             case 4:
                                 ///funciones para mostrar el stock de accesorios.
                                 for (Producto p : stock.getProductos())
@@ -173,13 +178,14 @@ public class Main {
                                     }
                                 }
                                 System.out.println(sb);
-
                                 break;
+
                             default:
                                 System.out.println("Opción Incorrecta.");
                         }
                     }while(opcionVerStock!=5);
                      break;
+
                 case 2:
                     System.out.println("-------------------------------\n");
                     System.out.println("        ACTUALIZACIÓN STOCK    \n");
@@ -216,6 +222,7 @@ public class Main {
                                 break;
                         }
                     }while(opcionActualizacionStock != 4);
+                    break;
                 case 3:
                     System.out.println("-------------------------------\n");
                     System.out.println("        DOCUMENTOS COMERCIALES   \n");
@@ -246,13 +253,46 @@ public class Main {
                     }while (opcionDocumentos !=3);
 
             }
-        }while(opcion !=4);
+        }while(opcion!=4);
 
+
+
+
+       sistemaToJson();
     }
 
 
+    /**
+     *  Convertimos las colecciones utilizadas a JSON una vez que termina el programa, por si se realizaron cambios.
+     */
+    public static void sistemaToJson()
+    {
+        SetProductos stockFinal = leerSetProductos("StockDeTienda.dat");
+        ListaClientes listaClientesFinal = leer("ListaClientes.dat");
+        ListaProveedores listaProveedoresFinal = leer( "ListaProveedores.dat");
+        MapRemitos mapaRemitosFinal = leer("MapaRemitos.dat");
+        MapFacturas mapaFacturasFinal = leer("MapaFacturas.dat");
+        try
+        {
+            JSONArray stockJson = stockFinal.convertirJsonArray();
+            JsonUtiles.grabar(stockJson,"Stock");
 
+            JSONArray listaClientesJson = listaClientesFinal.convertirJsonArray();
+            JsonUtiles.grabar(listaClientesJson,"Clientes");
 
+            JSONArray listaProveedoresJson = listaProveedoresFinal.convertirJsonArray();
+            JsonUtiles.grabar(listaProveedoresJson, "Proveedores");
+
+            JSONArray mapaRemitosJson = mapaRemitosFinal.convertirJsonArray();
+            JsonUtiles.grabar(mapaRemitosJson, "Remitos");
+
+            JSONArray mapaFacturasJson = mapaFacturasFinal.convertirJsonArray();
+            JsonUtiles.grabar(mapaFacturasJson, "Facturas");
+        }catch (JSONException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
 
 
 }

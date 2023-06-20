@@ -1,14 +1,14 @@
 package SistemaDeControl.Producto;
 import SistemaDeControl.Excepciones.ProductoInexistente;
 import SistemaDeControl.Interfaces.I_Convertir_JsonArray;
-import SistemaDeControl.Interfaces.I_metodosListas;
+import SistemaDeControl.Interfaces.I_metodosColeccion;
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.io.Serializable;
 import java.util.TreeSet;
 
-public class SetProductos implements I_metodosListas <Producto>, Serializable, I_Convertir_JsonArray //VEO SI ME FUNCIONA ESTA INTERFAZ ASI LA APROVECHAMOS
+public class SetProductos implements I_metodosColeccion<Producto>, Serializable, I_Convertir_JsonArray //VEO SI ME FUNCIONA ESTA INTERFAZ ASI LA APROVECHAMOS
 {
     TreeSet <Producto> productos;
 

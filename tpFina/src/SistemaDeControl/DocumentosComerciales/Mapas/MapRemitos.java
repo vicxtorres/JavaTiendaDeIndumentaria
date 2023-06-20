@@ -1,23 +1,24 @@
-package SistemaDeControl.DocumentosComerciales.Listas;
+package SistemaDeControl.DocumentosComerciales.Mapas;
 
 import SistemaDeControl.ClienteProveedor.Proveedor;
 import SistemaDeControl.DocumentosComerciales.Remito;
-import SistemaDeControl.Excepciones.ListaVacia;
+import SistemaDeControl.Excepciones.ColeccionVacia;
 import SistemaDeControl.Interfaces.I_Convertir_JsonArray;
-import SistemaDeControl.Interfaces.I_metodosListas;
+import SistemaDeControl.Interfaces.I_metodosColeccion;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-public class ListaRemitos implements I_metodosListas<Remito> , I_Convertir_JsonArray {
+public class MapRemitos implements I_metodosColeccion<Remito>, I_Convertir_JsonArray, Serializable {
 
     private HashMap<Proveedor,Remito> remitoHashMap;
 
-    public ListaRemitos()
+    public MapRemitos()
     {
         remitoHashMap = new HashMap<>();
     }
@@ -41,7 +42,7 @@ public class ListaRemitos implements I_metodosListas<Remito> , I_Convertir_JsonA
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ListaRemitos that)) return false;
+        if (!(o instanceof MapRemitos that)) return false;
 
         return getRemitoHashMap() != null ? getRemitoHashMap().equals(that.getRemitoHashMap()) : that.getRemitoHashMap() == null;
     }
@@ -50,7 +51,7 @@ public class ListaRemitos implements I_metodosListas<Remito> , I_Convertir_JsonA
 
     @Override
     public int hashCode() {
-       return 43;
+        return 43;
     }
 
 
@@ -60,7 +61,7 @@ public class ListaRemitos implements I_metodosListas<Remito> , I_Convertir_JsonA
      */
     @Override
     public String toString() {
-        return "ListaRemitos{" +
+        return "MapRemitos{" +
                 "remitoHashMap=" + remitoHashMap +
                 '}';
     }
@@ -99,10 +100,10 @@ public class ListaRemitos implements I_metodosListas<Remito> , I_Convertir_JsonA
     }
 
     @Override
-    public String listar() throws ListaVacia {
+    public String listar() throws ColeccionVacia {
         if(remitoHashMap.isEmpty())
         {
-            throw new ListaVacia("No hay remitos cargados.");
+            throw new ColeccionVacia("No hay remitos cargados.");
         }
         StringBuilder sb = new StringBuilder();
         for(Map.Entry<Proveedor, Remito> entry : remitoHashMap.entrySet())

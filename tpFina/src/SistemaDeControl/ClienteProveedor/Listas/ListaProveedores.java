@@ -1,12 +1,12 @@
 package SistemaDeControl.ClienteProveedor.Listas;
 
-import SistemaDeControl.ClienteProveedor.Cliente;
 import SistemaDeControl.ClienteProveedor.Proveedor;
 import SistemaDeControl.Excepciones.CuitYaAgregado;
-import SistemaDeControl.Excepciones.ListaVacia;
+
+import SistemaDeControl.Excepciones.ColeccionVacia;
 import SistemaDeControl.Excepciones.NoExisteElCuil;
 import SistemaDeControl.Interfaces.I_Convertir_JsonArray;
-import SistemaDeControl.Interfaces.I_metodosListas;
+import SistemaDeControl.Interfaces.I_metodosColeccion;
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -19,7 +19,7 @@ import java.util.NoSuchElementException;
  * es una plantilla para una eventual lista de proveedores o clientes.
 
  */
-public class ListaProveedores implements I_metodosListas<Proveedor>, Serializable, I_Convertir_JsonArray {
+public class ListaProveedores implements I_metodosColeccion<Proveedor>, Serializable, I_Convertir_JsonArray {
 
     private ArrayList <Proveedor> lista;
 
@@ -78,10 +78,10 @@ public class ListaProveedores implements I_metodosListas<Proveedor>, Serializabl
     }
 
     @Override
-    public String listar() throws ListaVacia {
+    public String listar() throws ColeccionVacia {
         if(lista.isEmpty())
         {
-            throw new ListaVacia("No hay proveedores ingresados!");
+            throw new ColeccionVacia("No hay proveedores ingresados!");
         }
         StringBuilder sb = new StringBuilder();
         for(Proveedor proveedor : lista)
@@ -117,5 +117,10 @@ public class ListaProveedores implements I_metodosListas<Proveedor>, Serializabl
             jsonArray.put ( p.convertirJsonObject () );
         }
         return jsonArray;
+    }
+
+    @Override
+    public String toString() {
+        return "Lista de Proveedores: " + lista ;
     }
 }

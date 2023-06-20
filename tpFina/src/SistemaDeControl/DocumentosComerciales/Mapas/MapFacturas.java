@@ -1,22 +1,20 @@
-package SistemaDeControl.DocumentosComerciales.Listas;
+package SistemaDeControl.DocumentosComerciales.Mapas;
 
 import SistemaDeControl.ClienteProveedor.Cliente;
-import SistemaDeControl.ClienteProveedor.Proveedor;
 import SistemaDeControl.DocumentosComerciales.Factura;
-import SistemaDeControl.DocumentosComerciales.Remito;
-import SistemaDeControl.Excepciones.ListaVacia;
+import SistemaDeControl.Excepciones.ColeccionVacia;
 import SistemaDeControl.Interfaces.I_Convertir_JsonArray;
-import SistemaDeControl.Interfaces.I_metodosListas;
+import SistemaDeControl.Interfaces.I_metodosColeccion;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import javax.swing.*;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-public class ListaFacturas implements I_metodosListas<Factura>, I_Convertir_JsonArray {
+public class MapFacturas implements I_metodosColeccion<Factura>, I_Convertir_JsonArray, Serializable {
 
     private HashMap<Cliente, Factura> facturaHashMap;
 
@@ -25,7 +23,7 @@ public class ListaFacturas implements I_metodosListas<Factura>, I_Convertir_Json
      * constructor
      */
 
-    public ListaFacturas() {
+    public MapFacturas() {
         facturaHashMap = new HashMap<> ( );
     }
 
@@ -68,9 +66,9 @@ public class ListaFacturas implements I_metodosListas<Factura>, I_Convertir_Json
     }
 
     @Override
-    public String listar() throws ListaVacia {
+    public String listar() throws ColeccionVacia {
         if (facturaHashMap.isEmpty ( )) {
-            throw new ListaVacia ( "No hay facturas cargadas." );
+            throw new ColeccionVacia ( "No hay facturas cargadas." );
         }
         StringBuilder sb = new StringBuilder ( );
         for (Map.Entry<Cliente, Factura> entry : facturaHashMap.entrySet ( )) {

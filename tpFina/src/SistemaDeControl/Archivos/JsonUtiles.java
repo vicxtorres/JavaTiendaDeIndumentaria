@@ -1,4 +1,4 @@
-package SistemaDeControl.Interfaces;
+package SistemaDeControl.Archivos;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

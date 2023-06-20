@@ -78,8 +78,7 @@ public class Documento implements Serializable, I_Convertir_JsonObject {
      */
     @Override
     public String toString() {
-        return "\nDocumento" + "\n" +
-                "\nNumero: " + numero + "\n" +
+        return "\nNumero: " + numero + "\n" +
                 "\n" + listadoProductos;
     }
 

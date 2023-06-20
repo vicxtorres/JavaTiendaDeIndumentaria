@@ -40,7 +40,7 @@ public class MainPruebas
         /**
          * LO GRABAMOS EN UN ARCHIVO, funciona
          */
-        ContoladoraArchivos.grabarSetProductos(setProductos, "SetProductos.dat");
+        ContoladoraArchivos.grabar(setProductos, "SetProductos.dat");
         SetProductos stockDeProductos = new SetProductos();
         stockDeProductos = ContoladoraArchivos.leerSetProductos("SetProductos.dat");
 
