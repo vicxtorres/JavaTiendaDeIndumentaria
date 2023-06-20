@@ -28,7 +28,6 @@ public class Calzado extends Producto
      * @param precioVenta
      * @param marca
      * @param color
-     * @param descripcion
      * @param disciplina
      * @param esOferta
      * @param esNovedad
@@ -36,8 +35,8 @@ public class Calzado extends Producto
      * @param tipoCalzado ZAPATILLA, BOTIN, OJOTA
      * @param talleNumero
      */
-    public Calzado(int SKU, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, int stock, TipoCalzado tipoCalzado, float talleNumero) {
-        super(SKU, precioCosto, precioVenta, marca, color, descripcion, disciplina, esOferta, esNovedad, stock);
+    public Calzado(int SKU, double precioCosto, double precioVenta, String marca, Color color, String disciplina, boolean esOferta, boolean esNovedad, int stock, TipoCalzado tipoCalzado, float talleNumero) {
+        super(SKU, precioCosto, precioVenta, marca, color, disciplina, esOferta, esNovedad, stock);
         this.tipoCalzado = tipoCalzado;
         this.talleNumero = talleNumero;
     }

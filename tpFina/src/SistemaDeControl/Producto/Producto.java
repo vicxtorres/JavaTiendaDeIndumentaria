@@ -37,13 +37,12 @@ public abstract class Producto implements Comparable, Serializable
      * @param precioVenta
      * @param marca
      * @param color AZUL, ROJO, ROSA, CELESTE, MARRON, MULTICOLOR, GRIS, VERDE, VIOLETA, AMARILLO, NARANJA
-     * @param descripcion
      * @param disciplina
      * @param esOferta
      * @param esNovedad
      * @param stock indica cuantos productos exactamente iguales a este hay
      */
-    public Producto(int SKU, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, int stock) {
+    public Producto(int SKU, double precioCosto, double precioVenta, String marca, Color color, String disciplina, boolean esOferta, boolean esNovedad, int stock) {
         this.SKU = SKU;
         this.precioCosto = precioCosto;
         this.precioVenta = precioVenta;

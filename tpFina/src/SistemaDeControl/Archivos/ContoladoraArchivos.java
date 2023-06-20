@@ -3,9 +3,11 @@ package SistemaDeControl.Archivos;
 import SistemaDeControl.DocumentosComerciales.Documento;
 import SistemaDeControl.DocumentosComerciales.Factura;
 import SistemaDeControl.DocumentosComerciales.Remito;
+import SistemaDeControl.Excepciones.ProductoInexistente;
 import SistemaDeControl.Producto.Producto;
 import SistemaDeControl.Producto.SetProductos;
 
+import javax.print.Doc;
 import javax.swing.text.Document;
 import java.io.*;
 import java.util.ArrayList;
@@ -494,4 +496,55 @@ public class ContoladoraArchivos
     }
 
 
+    /** metodo que utiliza un numero de factura pasado por teclado
+     * para modificar stock
+     */
+
+    public static void modificarConFactura (int numeroFactura)
+    {
+        String numero = "Factura" + numeroFactura +".dat";
+        Documento factura = ContoladoraArchivos.leerFactura(numero);
+        SetProductos stock = ContoladoraArchivos.leerSetProductos("Stock de tienda");
+        for(Producto p : factura.getListadoProductos().getProductos())
+        {
+            try{
+                stock.borrar(p);
+
+            }
+            catch (ProductoInexistente e) {
+                e.getMessage();
+            }
+        }
+        ContoladoraArchivos.grabarSetProductos(stock, "Stock de tienda");
+
+    }
+
+    public static void modificarStockConRemito (int numeroRemito)
+    {
+        String numero = "Remito" + numeroRemito +".dat";
+        Documento remito = ContoladoraArchivos.leerRemito(numero);
+        SetProductos stock = ContoladoraArchivos.leerSetProductos("Stock de tienda");
+        for(Producto p : remito.getListadoProductos().getProductos())
+        {
+            stock.agregar(p);
+        }
+        ContoladoraArchivos.grabarSetProductos(stock, "Stock de tienda");
+
+    }
+
+    public static void modificarStockManualmente (int sku, int nuevoStock)
+    {
+        SetProductos stock = ContoladoraArchivos.leerSetProductos("Stock de tienda");
+        for(Producto p : stock.getProductos())
+        {
+            if(p.getSKU() == sku)
+            {
+                p.setStock(nuevoStock);
+            }
+        }
+        ContoladoraArchivos.grabarSetProductos(stock, "Stock de tienda");
+    }
+
+
 }
+

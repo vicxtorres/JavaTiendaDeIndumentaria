@@ -10,6 +10,7 @@ import SistemaDeControl.DocumentosComerciales.Documento;
 import SistemaDeControl.DocumentosComerciales.Factura;
 import SistemaDeControl.DocumentosComerciales.Listas.ListaFacturas;
 import SistemaDeControl.DocumentosComerciales.Listas.ListaRemitos;
+import SistemaDeControl.DocumentosComerciales.Remito;
 import SistemaDeControl.Excepciones.ProductoInexistente;
 import SistemaDeControl.Producto.Accesorio.Accesorio;
 import SistemaDeControl.Producto.Accesorio.TipoAccesorio;
@@ -32,43 +33,63 @@ public class Main {
         Scanner scan = new Scanner(System.in);
 
         /*
-        Producto adidasEntrap = new Calzado(123,10000, 15000, "Adidas",Color.MULTICOLOR,"Entrap es un nuevo producto para Unisex de adidas. ","Futbol", false, false, 3, TipoCalzado.ZAPATILLA, 40 );
-        Producto adidasTresEstrellas = new Indumentaria(133,15000, 25000, "Adidas",Color.GRIS,"100% Argentina. Remera estampada para seguir festejando a la selección en todo momento y lugar. El tejido de algodón suave te envuelve con comodidad y el logo adidas con los colores de la bandera + el escudo de la AFA + la tres estrellas, dejan bien en claro a qué selección apoyás. Nuestros productos de algodón apoyan el cultivo de algodón sostenible.","Urbano", false, true, 123, TipoIndumentaria.REMERA,"XL" );
-        Producto pelotaArgentum22 = new Accesorio(333, 12000,43000,"Adidas", Color.MULTICOLOR,"De 1978 al futuro. Los llamativos gráficos difuminados de esta pelota adidas Argentum 22 se inspiran en la icónica pelota Tango Rosario que protagonizó la coronación de Argentina como campeón del mundo en suelo local. Su estructura sin costuras con uniones termoselladas y el sello de calidad FIFA Quality Pro garantizan un desempeño predecible en la cancha.", "Futbol", false, true, 122, TipoAccesorio.PELOTA,"5" );
+        Producto adidasEntrap = new Calzado(123,10000, 15000, "Adidas",Color.MULTICOLOR,"Futbol", false, false, 3, TipoCalzado.ZAPATILLA, 40 );
+        Producto adidasTresEstrellas = new Indumentaria(133,15000, 25000, "Adidas",Color.GRIS,"Urbano", false, true, 123, TipoIndumentaria.REMERA,"XL" );
+        Producto pelotaArgentum22 = new Accesorio(333, 12000,43000,"Adidas", Color.MULTICOLOR, "Futbol", false, true, 122, TipoAccesorio.PELOTA,"5" );
 
 
 
+        Producto nikeHuarache = new Calzado(1, 30000, 45000, "Nike", Color.NEGRO,"Training", false, false, 5, TipoCalzado.ZAPATILLA, 45);
+        Producto camisetaFrancia = new Indumentaria(2, 25000, 30000, "Nike", Color.AZUL, "Futbol", false, true, 10, TipoIndumentaria.REMERA, "L");
+        Producto bolsoSeleccion = new Accesorio(34, 45000, 60000, "Adidas", Color.GRIS,"Futbol", true, true, 100, TipoAccesorio.BOLSO, "chico");
+
+*/
+        /*
         SetProductos nuevoSet = new SetProductos();
         nuevoSet.agregar(adidasEntrap);
         nuevoSet.agregar(adidasTresEstrellas);
         nuevoSet.agregar(pelotaArgentum22);
+*/
+
+/*
+        SetProductos set2 = new SetProductos();
+        set2.agregar(nikeHuarache);
+        set2.agregar(camisetaFrancia);
+        set2.agregar(bolsoSeleccion);
+*/
+
+
 
 
         //grabarSetProductos(nuevoSet,"Stock de tienda");
-        Cliente cliente1 = new Cliente("Axel", "20-235432134-9", "Mexico 1483", CondicionIVA.IVA_EXENTO);
-        Proveedor proveedor1 = new Proveedor("Vic", "28-346542340-5","Catamarca 123", CondicionIVA.RESPONSABLE_INSCRIPTO);
+        //Cliente cliente1 = new Cliente("Axel", "20-235432134-9", "Mexico 1483", CondicionIVA.IVA_EXENTO);
+        //Proveedor proveedor1 = new Proveedor("Vic", "28-346542340-5","Catamarca 123", CondicionIVA.RESPONSABLE_INSCRIPTO);
 
 
+        /*
         Factura factura1 = new Factura(1, nuevoSet, cliente1, 100000);
-        //System.out.println(factura1);
+        System.out.println(factura1);
         grabarFactura(factura1, "Factura1.dat");
 
+         */
+        //Remito remito1 = new Remito(001,set2,proveedor1);
+        //grabarRemito(remito1, "Remito1.dat");
 
-        ListaClientes lista = new ListaClientes();
-        lista.agregar(cliente1);
+       // ListaClientes lista = new ListaClientes();
+       // lista.agregar(cliente1);
 
+            /*
         System.out.println("\n*****GRABANDO EN ARCHIVO******");
         ContoladoraArchivos.grabarListas(lista, "listaCliente.dat");
         ListaClientes nuevalistt = new ListaClientes();
         nuevalistt = ContoladoraArchivos.leerLista("listaCliente.dat");
         System.out.println(nuevalistt.toString());
+*/
 
-
-        Documento factura2 = leerFactura("Factura 1");
+        Documento factura2 = leerFactura("Factura1.dat");
         System.out.println(factura2.toString());
-
-        */
-
+        //Documento remito2 = leerRemito("Remito1.dat");
+        //System.out.println(remito2.toString());
 
 
 
@@ -105,7 +126,7 @@ public class Main {
                                 /**
                                  * Puedo mostrarlo directamente asi por si sufre modificaciones el archivo
                                  */
-                                stock = ContoladoraArchivos.leerSetProductos("SetProductos.dat");
+                                stock = ContoladoraArchivos.leerSetProductos("Stock de tienda");
                                 System.out.println("STOCK COMPLETO:" + stock.toString());
 
                                 /*
@@ -176,25 +197,26 @@ public class Main {
                                 System.out.println("Ingrese el numero de la factura a ingresar.\n");
                                 int numeroNuevaFactura = scan.nextInt();
                                 //funciones de agregar una factura
+                                modificarConFactura(numeroNuevaFactura);
                                 break;
                             case 2:
                                 System.out.println("Ingrese el numero de la remito a ingresar.\n");
                                 int numeroNuevoRemito = scan.nextInt();
                                 // funciones de agregar un remito.
+                                modificarStockConRemito(numeroNuevoRemito);
                                 break;
                             case 3:
                                 System.out.println("Ingrese el SKU cuyo stock desea corregir.\n");
                                 int skuAModificar = scan.nextInt();
+                                System.out.println("Ingrese el stock real.");
+                                int skuNuevo = scan.nextInt();
+                                ContoladoraArchivos.modificarStockManualmente(skuAModificar, skuNuevo);
                                 //funciones para modificar el stock de un producto.
                                 break;
                         }
                     }while(opcionActualizacionStock != 4);
             }
         }while(opcion !=3);
-
-
-
-
 
     }
 

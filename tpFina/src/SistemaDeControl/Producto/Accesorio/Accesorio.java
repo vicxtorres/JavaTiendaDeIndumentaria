@@ -27,7 +27,6 @@ public class Accesorio extends Producto
      * @param precioVenta
      * @param marca
      * @param color
-     * @param descripcion
      * @param disciplina
      * @param esOferta
      * @param esNovedad
@@ -35,8 +34,8 @@ public class Accesorio extends Producto
      * @param tipoAccesorio BOLSO, PELOTA
      * @param tamano Chico, Mediano, Grande
      */
-    public Accesorio(int SKU, double precioCosto, double precioVenta, String marca, Color color, String descripcion, String disciplina, boolean esOferta, boolean esNovedad, int stock, TipoAccesorio tipoAccesorio, String tamano) {
-        super(SKU, precioCosto, precioVenta, marca, color, descripcion, disciplina, esOferta, esNovedad, stock);
+    public Accesorio(int SKU, double precioCosto, double precioVenta, String marca, Color color,String disciplina, boolean esOferta, boolean esNovedad, int stock, TipoAccesorio tipoAccesorio, String tamano) {
+        super(SKU, precioCosto, precioVenta, marca, color,disciplina, esOferta, esNovedad, stock);
         this.tipoAccesorio = tipoAccesorio;
         this.tamano = tamano;
     }

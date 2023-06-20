@@ -31,6 +31,7 @@ public class SetProductos implements I_metodosListas <Producto>, Serializable //
     @Override
     public boolean agregar(Producto elemento) {
 
+        /*
         boolean agregado = productos.add(elemento);
         if(!agregado)
         {
@@ -39,6 +40,27 @@ public class SetProductos implements I_metodosListas <Producto>, Serializable //
             elemento.setStock(nuevoStock); //aumenta el stock del producto
         }
         agregado = productos.add(elemento); //lo agrega actualizado
+        return agregado;
+
+         */
+        boolean agregado = false;
+        if(!productos.contains(elemento))
+        {
+            productos.add(elemento);
+            agregado = true;
+        }
+        else
+        {
+            for(Producto p : productos)
+            {
+                if(p.getSKU() == elemento.getSKU())
+                {
+                    int nuevoStock = p.getStock() + elemento.getStock();
+                    p.setStock(nuevoStock);
+                    agregado = true;
+                }
+            }
+        }
         return agregado;
     }
 
@@ -51,6 +73,7 @@ public class SetProductos implements I_metodosListas <Producto>, Serializable //
      */
     @Override
     public boolean borrar(Producto elemento) throws ProductoInexistente {
+        /*
         boolean eliminado = productos.remove(elemento);
         if (eliminado)
         {
@@ -63,6 +86,25 @@ public class SetProductos implements I_metodosListas <Producto>, Serializable //
         }else
         {
             throw new ProductoInexistente("El producto a eliminar no existe");
+        }
+        return eliminado;
+         */
+        boolean eliminado = false;
+        if(productos.contains(elemento)){
+            for (Producto p : productos) {
+                if (p.getSKU() == elemento.getSKU()) {
+                    int nuevoStock = p.getStock() - elemento.getStock();
+                    p.setStock(nuevoStock);
+                    if (nuevoStock < 0) {
+                        p.setStock(0);
+                        eliminado = true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            throw new ProductoInexistente("El producto que usted quiere eliminar no existe.");
         }
         return eliminado;
     }
@@ -143,12 +185,22 @@ public class SetProductos implements I_metodosListas <Producto>, Serializable //
     }
 
 
+    public boolean contiene (Producto element)
+    {
+        boolean contiene = false;
+        if(productos.contains(element))
+        {
+            contiene = true;
+        }
+        return contiene;
+    }
 
 
     @Override
     public String toString() {
         return "\n- Productos -\n" + productos;
     }
+
 
 
 
