@@ -102,7 +102,8 @@ public class Main {
             System.out.println("Que Desea hacer hoy?\n" +
                     "1)Ver Stock de tienda.\n" +
                     "2)Actualizar Stock.\n" +
-                    "3)Cerrar Programa.\n");
+                    "3)Ver documentos Comerciales\n" +
+                    "4)Cerrar Programa.\n");
             opcion = scan.nextInt();
             switch (opcion) {
                 case 1:
@@ -215,8 +216,37 @@ public class Main {
                                 break;
                         }
                     }while(opcionActualizacionStock != 4);
+                case 3:
+                    System.out.println("-------------------------------\n");
+                    System.out.println("        DOCUMENTOS COMERCIALES   \n");
+                    System.out.println("-------------------------------\n");
+                    int opcionDocumentos;
+                    do {
+                        System.out.println("Que documento comercial desea ver: \n");
+                        System.out.println("1)Factura: \n");
+                        System.out.println("2)Remito: \n");
+                        System.out.println("3)Volver: \n");
+                        opcionDocumentos = scan.nextInt();
+                        switch (opcionDocumentos)
+                        {
+                            case 1:
+                                System.out.println("ingrese el numero de factura que desea ver");
+                                int numeroFactura = scan.nextInt();
+                                System.out.println(verFactura(numeroFactura));
+                                break;
+                            case 2:
+                                System.out.println("ingrese el numero de remito que desea ver");
+                                int numeroRemito = scan.nextInt();
+                                System.out.println(verRemito(numeroRemito));
+                                break;
+                            default:
+                                System.out.println("Opcion incorrecta.");
+                        }
+                        break;
+                    }while (opcionDocumentos !=3);
+
             }
-        }while(opcion !=3);
+        }while(opcion !=4);
 
     }
 

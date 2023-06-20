@@ -546,5 +546,25 @@ public class ContoladoraArchivos
     }
 
 
+    /**
+     * metodo para visualizar la factura
+     * @param numeroFactura
+     * @return el string de la misma
+     */
+
+    public static String verFactura (int numeroFactura)
+    {
+        String numero = "Factura" + numeroFactura +".dat";
+        Documento factura = ContoladoraArchivos.leerFactura(numero);
+        return factura.toString();
+
+    }
+
+    public static String verRemito (int numeroRemito)
+    {
+        String numero = "Remito" +numeroRemito+".dat";
+        Documento remito = ContoladoraArchivos.leerRemito(numero);
+        return remito.toString();
+    }
 }
 
