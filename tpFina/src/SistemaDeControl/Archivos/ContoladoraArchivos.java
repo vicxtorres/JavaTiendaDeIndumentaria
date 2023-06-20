@@ -209,11 +209,11 @@ public class ContoladoraArchivos
     /** Utiliza un numero de factura pasado por teclado para modificar STOCK
      * @param numeroFactura
      */
-    public static void modificarConFactura (int numeroFactura)
+    public static void modificarStockConFactura (int numeroFactura)
     {
         String numero = "Factura" + numeroFactura +".dat";
         Documento factura = ContoladoraArchivos.leerDocumento(numero);
-        SetProductos stock = ContoladoraArchivos.leerSetProductos("Stock de tienda");
+        SetProductos stock = ContoladoraArchivos.leerSetProductos("StockDeTienda.dat");
         for(Producto p : factura.getListadoProductos().getProductos())
         {
             try{
@@ -224,8 +224,7 @@ public class ContoladoraArchivos
                 e.getMessage();
             }
         }
-        ContoladoraArchivos.grabar(stock, "Stock de tienda");
-
+        ContoladoraArchivos.grabar(stock, "StockDeTienda.dat");
     }
 
 
@@ -236,12 +235,12 @@ public class ContoladoraArchivos
     {
         String numero = "Remito" + numeroRemito +".dat";
         Documento remito = ContoladoraArchivos.leerDocumento(numero);
-        SetProductos stock = ContoladoraArchivos.leerSetProductos("Stock de tienda");
+        SetProductos stock = ContoladoraArchivos.leerSetProductos("StockDeTienda.dat");
         for(Producto p : remito.getListadoProductos().getProductos())
         {
             stock.agregar(p);
         }
-        ContoladoraArchivos.grabar(stock, "Stock de tienda");
+        ContoladoraArchivos.grabar(stock, "StockDeTienda.dat");
 
     }
 
@@ -254,7 +253,7 @@ public class ContoladoraArchivos
      */
     public static void modificarStockManualmente (int sku, int nuevoStock)
     {
-        SetProductos stock = ContoladoraArchivos.leerSetProductos("Stock de tienda");
+        SetProductos stock = ContoladoraArchivos.leerSetProductos("StockDeTienda.dat");
         for(Producto p : stock.getProductos())
         {
             if(p.getSKU() == sku)
@@ -262,7 +261,7 @@ public class ContoladoraArchivos
                 p.setStock(nuevoStock);
             }
         }
-        ContoladoraArchivos.grabar(stock, "Stock de tienda");
+        ContoladoraArchivos.grabar(stock, "StockDeTienda.dat");
     }
 
 

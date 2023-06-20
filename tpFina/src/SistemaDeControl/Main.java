@@ -101,11 +101,14 @@ public class Main {
 
         Documento remito2 = leerDocumento("Remito1.dat");
         System.out.println(remito2.toString());
-
 */
 
 
-        System.out.println("--------------------------------------------------");
+        MenuInterfazGrafica menuInterfazGrafica = new MenuInterfazGrafica();
+        menuInterfazGrafica.setVisible(true);
+
+        //aca esta el menu por si no funciona la interfaz
+         /*       System.out.println("--------------------------------------------------");
         System.out.println("Bienvenido al sistema de inventario de VAV Sports ");
         System.out.println("---------------------------------------------------");
         int opcion;
@@ -137,10 +140,6 @@ public class Main {
 
                         switch (opcionVerStock) {
                             case 1:
-
-                                /**
-                                 * Puedo mostrarlo directamente asi por si sufre modificaciones el archivo
-                                 */
                                 stock = ContoladoraArchivos.leerSetProductos("StockDeTienda.dat");
                                 System.out.println("STOCK COMPLETO:" + stock.toString());
 
@@ -203,8 +202,8 @@ public class Main {
                             case 1:
                                 System.out.println("Ingrese el numero de la factura a ingresar.\n");
                                 int numeroNuevaFactura = scan.nextInt();
-                                //funciones de agregar una factura
-                                modificarConFactura(numeroNuevaFactura);
+                                //funciones de agregar una factura, el stock disminuye
+                                modificarStockConFactura(numeroNuevaFactura);
                                 break;
                             case 2:
                                 System.out.println("Ingrese el numero de la remito a ingresar.\n");
@@ -255,7 +254,7 @@ public class Main {
             }
         }while(opcion!=4);
 
-
+*/
 
 
        sistemaToJson();
