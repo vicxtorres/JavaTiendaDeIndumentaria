@@ -4,13 +4,16 @@ import SistemaDeControl.ClienteProveedor.Cliente;
 import SistemaDeControl.Excepciones.CuitYaAgregado;
 import SistemaDeControl.Excepciones.ListaVacia;
 import SistemaDeControl.Excepciones.NoExisteElCuil;
+import SistemaDeControl.Interfaces.I_Convertir_JsonArray;
 import SistemaDeControl.Interfaces.I_metodosListas;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class ListaClientes implements I_metodosListas<Cliente>, Serializable {
+public class ListaClientes implements I_metodosListas<Cliente>, Serializable , I_Convertir_JsonArray {
 
     private ArrayList<Cliente> lista;
 
@@ -86,6 +89,22 @@ public class ListaClientes implements I_metodosListas<Cliente>, Serializable {
         {
             throw new NoSuchElementException("No se encontró el cliente.");
         }
+
+    }
+
+    /**Json
+     *
+     * @return
+     * @throws JSONException
+     */
+    @Override
+    public JSONArray convertirJsonArray() throws JSONException {
+        JSONArray jsonArray = new JSONArray ();
+        for (Cliente c:lista)
+        {
+            jsonArray.put ( c.convertirJsonObject () );
+        }
+        return jsonArray;
 
     }
 }

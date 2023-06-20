@@ -1,27 +1,29 @@
 package SistemaDeControl.Producto.Accesorio;
 
+import SistemaDeControl.Interfaces.I_Convertir_JsonObject;
 import SistemaDeControl.Producto.Color;
 import SistemaDeControl.Producto.Producto;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Date;
 
 /**
  * Clase Accesorio: uno de los productos que tenemos
  */
-public class Accesorio extends Producto
-{
+public class Accesorio extends Producto implements I_Convertir_JsonObject {
     private TipoAccesorio tipoAccesorio;
     private String tamano; //chico, mediano, grande
 
-    public Accesorio()
-    {
-        super();
-        tamano="";
-        tipoAccesorio=null;
+    public Accesorio() {
+        super ( );
+        tamano = "";
+        tipoAccesorio = null;
     }
 
     /**
      * Constructor completo de Accesorio
+     *
      * @param SKU
      * @param precioCosto
      * @param precioVenta
@@ -32,10 +34,10 @@ public class Accesorio extends Producto
      * @param esNovedad
      * @param stock
      * @param tipoAccesorio BOLSO, PELOTA
-     * @param tamano Chico, Mediano, Grande
+     * @param tamano        Chico, Mediano, Grande
      */
-    public Accesorio(int SKU, double precioCosto, double precioVenta, String marca, Color color,String disciplina, boolean esOferta, boolean esNovedad, int stock, TipoAccesorio tipoAccesorio, String tamano) {
-        super(SKU, precioCosto, precioVenta, marca, color,disciplina, esOferta, esNovedad, stock);
+    public Accesorio(int SKU, double precioCosto, double precioVenta, String marca, Color color, String disciplina, boolean esOferta, boolean esNovedad, int stock, TipoAccesorio tipoAccesorio, String tamano) {
+        super ( SKU, precioCosto, precioVenta, marca, color, disciplina, esOferta, esNovedad, stock );
         this.tipoAccesorio = tipoAccesorio;
         this.tamano = tamano;
     }
@@ -57,19 +59,33 @@ public class Accesorio extends Producto
 
     /**
      * Accesorio, metodo que retorna la medida
+     *
      * @return String -> Chico | Mediano | Grande
      */
     @Override
-    public String getMedida()
-    {
+    public String getMedida() {
         return tamano;
     }
+
 
 
     @Override
     public String toString() {
         return "\nAccesorio." +
                 "\nTipo: " + tipoAccesorio +
-                "\nTamano: " + tamano + super.toString();
+                "\nTamano: " + tamano + super.toString ( );
+    }
+
+    /**Json
+     *
+     * @return
+     * @throws JSONException
+     */
+    @Override
+    public JSONObject convertirJsonObject() throws JSONException {
+        JSONObject jsonObject = super.convertirJsonObject ( );
+        jsonObject.put ( "Tipo ", tipoAccesorio.name ( ) );
+        jsonObject.put ( "Tamano", tamano );
+        return jsonObject;
     }
 }

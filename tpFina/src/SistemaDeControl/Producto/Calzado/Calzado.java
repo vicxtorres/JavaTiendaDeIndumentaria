@@ -1,14 +1,17 @@
 package SistemaDeControl.Producto.Calzado;
 
+import SistemaDeControl.Interfaces.I_Convertir_JsonObject;
 import SistemaDeControl.Producto.Color;
 import SistemaDeControl.Producto.Producto;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Date;
 
 /**
  * Clase Calzado uno de los productos que tenemos
  */
-public class Calzado extends Producto
+public class Calzado extends Producto implements I_Convertir_JsonObject
 {
     private TipoCalzado tipoCalzado;
     private float talleNumero;
@@ -76,5 +79,16 @@ public class Calzado extends Producto
                 "\nNumero de talle: " + talleNumero + super.toString();
     }
 
-
+    /**Json
+     *
+     * @return
+     * @throws JSONException
+     */
+    @Override
+    public JSONObject convertirJsonObject() throws JSONException {
+        JSONObject jsonObject= super.convertirJsonObject ( );
+        jsonObject.put ( "Tipo calzado ",tipoCalzado.name () );
+        jsonObject.put ( "Numero de talle",talleNumero );
+        return jsonObject;
+    }
 }

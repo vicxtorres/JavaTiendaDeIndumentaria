@@ -1,6 +1,8 @@
 package SistemaDeControl.Producto.Indumentaria;
 import SistemaDeControl.Producto.Color;
 import SistemaDeControl.Producto.Producto;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Date;
 
@@ -74,4 +76,17 @@ public class Indumentaria extends Producto
                 "\nMedida de talle: " + talleMedida +super.toString();
     }
 
+    /**Json
+     *
+     * @return
+     * @throws JSONException
+     */
+    @Override
+    public JSONObject convertirJsonObject() throws JSONException {
+        JSONObject jsonObject = super.convertirJsonObject ( );
+        jsonObject.put ( "Tipo de indumnetaria",tipoIndumentaria.name () );
+        jsonObject.put ( "Medida de talle", talleMedida );
+        return jsonObject;
+
+    }
 }

@@ -3,13 +3,17 @@ package SistemaDeControl.DocumentosComerciales.Listas;
 import SistemaDeControl.ClienteProveedor.Proveedor;
 import SistemaDeControl.DocumentosComerciales.Remito;
 import SistemaDeControl.Excepciones.ListaVacia;
+import SistemaDeControl.Interfaces.I_Convertir_JsonArray;
 import SistemaDeControl.Interfaces.I_metodosListas;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-public class ListaRemitos implements I_metodosListas<Remito> {
+public class ListaRemitos implements I_metodosListas<Remito> , I_Convertir_JsonArray {
 
     private HashMap<Proveedor,Remito> remitoHashMap;
 
@@ -121,5 +125,30 @@ public class ListaRemitos implements I_metodosListas<Remito> {
             throw new NoSuchElementException("No se encontró el remito");
 
         }
+    }
+
+    /**Json
+     *
+     * @return
+     * @throws JSONException
+     */
+    @Override
+    public JSONArray convertirJsonArray() throws JSONException {
+        JSONArray jsonArray = new JSONArray ();
+        for(Map.Entry<Proveedor,Remito>entry : remitoHashMap.entrySet ())
+        {
+            Proveedor p = entry.getKey ();
+            Remito r = entry.getValue ();
+
+            JSONObject jsonObjectProveedor = p.convertirJsonObject ();
+            JSONObject jsonObjectRemito = r.convertirJsonObject ();
+
+            JSONObject items = new JSONObject();
+            items.put ( "Proveedor", jsonObjectProveedor );
+            items.put ( "Remito",jsonObjectRemito );
+
+            jsonArray.put ( items );
+        }
+        return jsonArray;
     }
 }

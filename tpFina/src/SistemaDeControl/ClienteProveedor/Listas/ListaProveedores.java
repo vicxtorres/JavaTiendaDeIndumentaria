@@ -5,7 +5,10 @@ import SistemaDeControl.ClienteProveedor.Proveedor;
 import SistemaDeControl.Excepciones.CuitYaAgregado;
 import SistemaDeControl.Excepciones.ListaVacia;
 import SistemaDeControl.Excepciones.NoExisteElCuil;
+import SistemaDeControl.Interfaces.I_Convertir_JsonArray;
 import SistemaDeControl.Interfaces.I_metodosListas;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,7 +19,7 @@ import java.util.NoSuchElementException;
  * es una plantilla para una eventual lista de proveedores o clientes.
 
  */
-public class ListaProveedores implements I_metodosListas<Proveedor>, Serializable {
+public class ListaProveedores implements I_metodosListas<Proveedor>, Serializable, I_Convertir_JsonArray {
 
     private ArrayList <Proveedor> lista;
 
@@ -102,4 +105,17 @@ public class ListaProveedores implements I_metodosListas<Proveedor>, Serializabl
 
     }
 
+    /**Json
+     *
+     * @return
+     * @throws JSONException
+     */
+    @Override
+    public JSONArray convertirJsonArray() throws JSONException {
+        JSONArray jsonArray = new JSONArray ();
+        for (Proveedor p:lista) {
+            jsonArray.put ( p.convertirJsonObject () );
+        }
+        return jsonArray;
+    }
 }

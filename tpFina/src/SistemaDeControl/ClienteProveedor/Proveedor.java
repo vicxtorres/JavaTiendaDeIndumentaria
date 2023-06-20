@@ -1,8 +1,12 @@
 package SistemaDeControl.ClienteProveedor;
 
+import SistemaDeControl.Interfaces.I_Convertir_JsonObject;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
-public class Proveedor implements Serializable {
+public class Proveedor implements Serializable, I_Convertir_JsonObject {
 
 
     private String nombre;
@@ -100,5 +104,20 @@ public  Proveedor()
                 "\ndomicilioFiscal='" + domicilioFiscal + '\'' +
                 "\ncondicionFiscal=" + condicionFiscal +
                 "\n-----------------------------------";
+    }
+
+    /**Json
+     *
+     * @return
+     * @throws JSONException
+     */
+    @Override
+    public JSONObject convertirJsonObject() throws JSONException {
+        JSONObject jsonObject = new JSONObject (  );
+        jsonObject.put ("Nombre ",nombre) ;
+        jsonObject.put ( "Cuit",cuit );
+        jsonObject.put ( "Domicilio Fiscal",domicilioFiscal );
+        jsonObject.put ( "Condicion Fiscal",condicionFiscal );
+        return jsonObject;
     }
 }

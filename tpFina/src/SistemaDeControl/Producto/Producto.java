@@ -1,10 +1,14 @@
 package SistemaDeControl.Producto;
 
+import SistemaDeControl.Interfaces.I_Convertir_JsonObject;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
-public abstract class Producto implements Comparable, Serializable
+public abstract class Producto implements Comparable, Serializable, I_Convertir_JsonObject
 {
     private int SKU;
     private double precioCosto;
@@ -176,11 +180,29 @@ public abstract class Producto implements Comparable, Serializable
      */
     public abstract String getMedida();
 
+    /**Json
+     *
+     * @return
+     * @throws JSONException
+     */
+    @Override
+    public JSONObject convertirJsonObject() throws JSONException {
+        JSONObject jsonObject = new JSONObject (  );
+        jsonObject.put ("SKU",SKU  );
+        jsonObject.put ( "Precio de costo",precioCosto );
+        jsonObject.put ( "Precio de venta",precioVenta );
+        jsonObject.put ( "Marca",marca );
+        jsonObject.put ( "Color",color);
+        jsonObject.put ( "Disciplina",disciplina );
+        jsonObject.put ( "Es oferta",esOferta );
+        jsonObject.put ( "Es novedad",esNovedad );
+        jsonObject.put ( "Stock",stock );
 
 
+        return jsonObject;
+    }
 
-
- /*
+/*
    SI PONGO EL EQUALS NO ME ANDA LO DE ARCHIVOS NI IDEA
 
    @Override

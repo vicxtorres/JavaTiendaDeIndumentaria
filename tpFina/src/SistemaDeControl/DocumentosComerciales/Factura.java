@@ -4,6 +4,8 @@ import SistemaDeControl.ClienteProveedor.Cliente;
 import SistemaDeControl.ClienteProveedor.Proveedor;
 import SistemaDeControl.Producto.Producto;
 import SistemaDeControl.Producto.SetProductos;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Factura extends Documento{
 
@@ -90,5 +92,17 @@ private double totalFactura;
                 "\n-------------------------------------"+
                 super.toString() +
                 "\n-----------------------------------";
+    }
+
+    /**Json
+     *
+     * @return
+     * @throws JSONException
+     */
+    @Override
+    public JSONObject convertirJsonObject() throws JSONException {
+         JSONObject jsonObject =super.convertirJsonObject ( );
+         jsonObject.put ( "cliente",cliente.convertirJsonObject () );
+         return jsonObject;
     }
 }
