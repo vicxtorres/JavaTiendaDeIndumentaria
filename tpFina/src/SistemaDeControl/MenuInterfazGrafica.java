@@ -121,9 +121,20 @@ public class MenuInterfazGrafica extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Lógica para la opción 1 del submenú, STOCK COMPLETO
-                SetProductos stock =  leerSetProductos("StockDeTienda.dat");
-                stock = leerSetProductos("StockDeTienda.dat");
-                JOptionPane.showMessageDialog(null, stock.toString());
+                SetProductos stock = leerSetProductos("StockDeTienda.dat");
+
+                // Crear un JTextArea para mostrar el contenido
+                JTextArea textArea = new JTextArea(stock.toString());
+
+                // Crear un JScrollPane y agregar el JTextArea
+                JScrollPane scrollPane = new JScrollPane(textArea);
+
+                // Crear una nueva ventana y agregar el JScrollPane
+                JFrame scrollFrame = new JFrame("Stock Completo");
+                scrollFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                scrollFrame.add(scrollPane);
+                scrollFrame.setSize(400, 300);
+                scrollFrame.setVisible(true);
             }
         });
         subMenuStock.add(subButton1);
@@ -145,7 +156,19 @@ public class MenuInterfazGrafica extends JFrame {
                         sb.append("-----------------------"+p+"\n");
                     }
                 }
-                JOptionPane.showMessageDialog(null, sb);
+
+                // Crear un JTextArea para mostrar el contenido
+                JTextArea textArea = new JTextArea(sb.toString());
+
+                // Crear un JScrollPane y agregar el JTextArea
+                JScrollPane scrollPane = new JScrollPane(textArea);
+
+                // Crear una nueva ventana y agregar el JScrollPane
+                JFrame scrollFrame = new JFrame("Calzado");
+                scrollFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                scrollFrame.add(scrollPane);
+                scrollFrame.setSize(400, 300);
+                scrollFrame.setVisible(true);
             }
         });
         subMenuStock.add(subButton2);
@@ -167,7 +190,13 @@ public class MenuInterfazGrafica extends JFrame {
                         sb.append("-----------------------"+p+"\n");
                     }
                 }
-                JOptionPane.showMessageDialog(null, sb);
+                JTextArea textArea = new JTextArea(sb.toString());
+                JScrollPane scrollPane = new JScrollPane(textArea);
+                JFrame scrollFrame = new JFrame("Indumentaria");
+                scrollFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                scrollFrame.add(scrollPane);
+                scrollFrame.setSize(400, 300);
+                scrollFrame.setVisible(true);
             }
         });
         subMenuStock.add(subButton3);
@@ -189,7 +218,13 @@ public class MenuInterfazGrafica extends JFrame {
                         sb.append("-----------------------"+p+"\n");
                     }
                 }
-                JOptionPane.showMessageDialog(null, sb);
+                JTextArea textArea = new JTextArea(sb.toString());
+                JScrollPane scrollPane = new JScrollPane(textArea);
+                JFrame scrollFrame = new JFrame("Accesorio");
+                scrollFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                scrollFrame.add(scrollPane);
+                scrollFrame.setSize(400, 300);
+                scrollFrame.setVisible(true);
             }
         });
         subMenuStock.add(subButton4);
@@ -212,7 +247,7 @@ public class MenuInterfazGrafica extends JFrame {
 
 
         /**Boton opcion agregar factura*/
-        JButton subButton1 = new JButton("Dar Factura");
+        JButton subButton1 = new JButton("Registrar Factura");
         subButton1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -230,7 +265,7 @@ public class MenuInterfazGrafica extends JFrame {
 
 
         /**Boton opcion agregar remito*/
-        JButton subButton2 = new JButton("Recibir Remito");
+        JButton subButton2 = new JButton("Registrar Remito");
         subButton2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -294,7 +329,14 @@ public class MenuInterfazGrafica extends JFrame {
                 String numeroNuevaFacturaStr = JOptionPane.showInputDialog("Ingrese el número de la factura que desea ver:");
                 try {
                     int numeroNuevaFactura = Integer.parseInt(numeroNuevaFacturaStr);
-                    JOptionPane.showMessageDialog(null, verFactura(numeroNuevaFactura));
+                    JTextArea textArea = new JTextArea(verFactura(numeroNuevaFactura));
+                    JScrollPane scrollPane = new JScrollPane(textArea);
+                    JFrame scrollFrame = new JFrame("Factura");
+                    scrollFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    scrollFrame.add(scrollPane);
+                    scrollFrame.setSize(400, 300);
+                    scrollFrame.setVisible(true);
+
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Error: el número de factura ingresado no es válido");
                 }
@@ -312,7 +354,14 @@ public class MenuInterfazGrafica extends JFrame {
                 String numeroRemitoStr = JOptionPane.showInputDialog("Ingrese el número de la remito que desea ver:");
                 try {
                     int numeroRemito = Integer.parseInt(numeroRemitoStr);
-                    JOptionPane.showMessageDialog(null, verRemito(numeroRemito));
+                    JTextArea textArea = new JTextArea(verRemito(numeroRemito));
+                    JScrollPane scrollPane = new JScrollPane(textArea);
+                    JFrame scrollFrame = new JFrame("Remito");
+                    scrollFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    scrollFrame.add(scrollPane);
+                    scrollFrame.setSize(400, 300);
+                    scrollFrame.setVisible(true);
+
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Error: el número de remito ingresado no es válido");
                 }

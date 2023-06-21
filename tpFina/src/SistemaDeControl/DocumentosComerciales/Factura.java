@@ -87,14 +87,12 @@ private double totalFactura;
      */
     @Override
     public String toString() {
-        return  "==========================================\n" +
+        return  "==========================================" +
                 "\nFactura\n" +
-                super.toString() +
-                "\n-------------------------------------"+
-                cliente+
+                super.toString() + cliente+
                 "\n-------------------------------------"+
                 "\nTotal Factura =" + totalFactura +"\n" +
-                "==========================================\n";
+                "==========================================";
     }
 
     /**Json

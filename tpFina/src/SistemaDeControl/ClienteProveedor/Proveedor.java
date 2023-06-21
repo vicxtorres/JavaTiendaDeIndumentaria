@@ -97,7 +97,7 @@ public  Proveedor()
 /**tostring*/
     @Override
     public String toString() {
-        return  "\n-------------------------------------"+
+        return
                 "\nProveedor{" +
                 "\nnombre='" + nombre + '\'' +
                 "\ncuit='" + cuit + '\'' +

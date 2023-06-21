@@ -65,22 +65,26 @@ public class Remito extends Documento {
 
 
     /**
-     * tostring
+     * ToString
+     * @return
      */
-
     @Override
     public String toString() {
         return
-                "==========================================\n" +
+                "==========================================" +
                 "\nRemito\n" +
-                        super.toString ( )   +
-                "\n-------------------------------------" +
+                        super.toString ( ) +
                         proveedor +
-                "\n-------------------------------------\n" +
-                "==========================================\n";
-
+                "-------------------------------------\n" +
+                "==========================================";
     }
 
+
+    /**
+     * Convierte el remito en jsonObject
+     * @return
+     * @throws JSONException
+     */
     @Override
     public JSONObject convertirJsonObject() throws JSONException {
         JSONObject jsonObject = super.convertirJsonObject ( );

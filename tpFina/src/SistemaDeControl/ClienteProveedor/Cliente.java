@@ -95,7 +95,7 @@ private CondicionIVA condicionIVA;
 
     @Override
     public String toString() {
-        return  "\n-------------------------------------"+
+        return
                 "\nCliente\n" +
                 "\nNombre: '" + nombre + '\'' +
                 "\nCuil: '" + cuil + '\'' +
