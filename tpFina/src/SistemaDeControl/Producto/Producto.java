@@ -147,7 +147,7 @@ public abstract class Producto implements Comparable, Serializable, I_Convertir_
                 "\nEs oferta: " + esOferta +
                 "\nEs novedad: " + esNovedad +
                 "\nSTOCK: " + stock +
-                "\n------------------------------\n";
+                "\n------------------------------";
     }
 
 

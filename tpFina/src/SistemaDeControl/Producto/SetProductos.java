@@ -201,7 +201,7 @@ public class SetProductos implements I_metodosColeccion<Producto>, Serializable,
 
     @Override
     public String toString() {
-        return "\n- Productos -\n" + productos;
+        return "Productos\n" + productos;
     }
 
     /**Json

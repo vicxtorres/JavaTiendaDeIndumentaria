@@ -46,6 +46,8 @@ public class MenuInterfazGrafica extends JFrame {
         add(subMenuDocumentos, "subMenuDocumentos");
 
         cardLayout.show(getContentPane(), "mainMenu");
+
+        pack();
     }
 
 
@@ -59,7 +61,7 @@ public class MenuInterfazGrafica extends JFrame {
 
 
         /**SUBMENU DE TIENDA*/
-        button1 = new JButton("Ver Stock de Tienda");
+        button1 = new JButton("Ver Stock De Tienda");
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -119,7 +121,7 @@ public class MenuInterfazGrafica extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Lógica para la opción 1 del submenú, STOCK COMPLETO
-                SetProductos stock =  leerSetProductos("Stock de tienda");
+                SetProductos stock =  leerSetProductos("StockDeTienda.dat");
                 stock = leerSetProductos("StockDeTienda.dat");
                 JOptionPane.showMessageDialog(null, stock.toString());
             }
@@ -133,7 +135,7 @@ public class MenuInterfazGrafica extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Lógica para la opción 2 del submenú
-                SetProductos stock =  leerSetProductos("Stock de tienda");
+                SetProductos stock =  leerSetProductos("StockDeTienda.dat");
                 stock = leerSetProductos("StockDeTienda.dat");
                 StringBuilder sb = new StringBuilder();
                 for (Producto p : stock.getProductos())
@@ -155,7 +157,7 @@ public class MenuInterfazGrafica extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Lógica para la opción 3 del submenú
-                SetProductos stock =  leerSetProductos("Stock de tienda");
+                SetProductos stock =  leerSetProductos("StockDeTienda.dat");
                 stock = leerSetProductos("StockDeTienda.dat");
                 StringBuilder sb = new StringBuilder();
                 for (Producto p : stock.getProductos())
@@ -177,7 +179,7 @@ public class MenuInterfazGrafica extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Lógica para la opción 4 del submenú
-                SetProductos stock =  leerSetProductos("Stock de tienda");
+                SetProductos stock =  leerSetProductos("StockDeTienda.dat");
                 stock = leerSetProductos("StockDeTienda.dat");
                 StringBuilder sb = new StringBuilder();
                 for (Producto p : stock.getProductos())
