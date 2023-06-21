@@ -65,7 +65,6 @@ public class MenuInterfazGrafica extends JFrame {
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Has seleccionado ver el stock de la tienda.");
                 cardLayout.show(getContentPane(), "subMenuStock");
             }
         });
@@ -78,7 +77,6 @@ public class MenuInterfazGrafica extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Lógica para la opción "Actualizar Stock"
-                JOptionPane.showMessageDialog(null, "Has seleccionado actualizar el stock de la tienda.");
                 cardLayout.show(getContentPane(), "subMenuActualizar");
             }
         });
@@ -91,7 +89,6 @@ public class MenuInterfazGrafica extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Lógica para la opción "Ver Documentos Comerciales"
-                JOptionPane.showMessageDialog(null, "Has seleccionado ver documentos comerciales.");
                 cardLayout.show(getContentPane(), "subMenuDocumentos");
             }
         });
